@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?i80foc');
+  src:  url('fonts/icomoon.eot?i80foc#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?i80foc') format('truetype'),
+    url('fonts/icomoon.woff?i80foc') format('woff'),
+    url('fonts/icomoon.svg?i80foc#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.custom-icon{
+  font: normal normal normal 14px/1 icomoon;
+}
+.custom-icon-2x{
+    font-size: 4vh;
+}
+.custom-icon-mesa:before {
+  content: "\e900";
+}
+.custom-icon-backspace:before {
+  content: "\e901";
+}
+.custom-icon-go-back-arrow:before {
+  content: "\e902";
+}
+
+

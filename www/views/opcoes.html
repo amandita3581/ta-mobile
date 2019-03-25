@@ -1,0 +1,102 @@
+<form class="form" style="margin:20px 10px">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs">
+                  <li role="itensDoPedido" ng-class="{'active': optCtrl.tab=='fracionados'}" ng-if="optCtrl.produto.idTipoProduto == 3"><a href="" ng-click="optCtrl.tab = 'fracionados'">Fracionados</a></li>
+                  <li role="itensDoPedido" ng-class="{'active': optCtrl.tab=='adicionais'}" ng-if="optCtrl.produto.flRequererItemAdicional"><a href="" ng-click="optCtrl.tab = 'adicionais'">Adicionais</a></li>
+                  <li role="itensDoPedido" ng-class="{'active': optCtrl.tab=='observacoes'}"><a href="" ng-click="optCtrl.tab = 'observacoes'">Observações</a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+        <div class="col-xs-12" ng-if="optCtrl.tab=='observacoes'">
+            <label>Observações</label>
+            <textarea rows="10" class="form-control" ng-model="optCtrl.produto.observacoes" style="text-transform: uppercase"></textarea>
+        </div>
+        <div class="col-xs-12" ng-if="optCtrl.produto.flRequererItemAdicional && optCtrl.tab=='adicionais'" style="max-height: 70vh;overflow: auto;">
+            <table style="width:100%;margin-top:20px;font-size:0.9em;">
+                <thead>
+                    <tr>
+                        <th>Desc.</th>
+                        <th>Com</th>
+                        <th>Sem</th>
+                        <th>NA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in optCtrl.produto.adicionais">
+                        <td>{{item.stProdutoAbreviado}}</td>
+                        <td class="ta-table-adicionais-radio">
+							<div class="radio radio-primary">
+								<input type="radio" ng-value="0" ng-model="item.flAdicionado" aria-label="com" id="com{{$index}}">
+								<label for="com{{$index}}"></label>
+							</div>
+						</td>
+						<td class="ta-table-adicionais-radio">
+							<div class="radio radio-primary">
+								<input type="radio" ng-value="1" ng-model="item.flAdicionado" aria-label="sem" id="sem{{$index}}">
+								<label for="sem{{$index}}"></label>
+							</div>
+						</td>
+						<td class="ta-table-adicionais-radio">
+							<div class="radio radio-primary">
+								<input type="radio" ng-value="2" ng-model="item.flAdicionado" aria-label="na" id="na{{$index}}">
+								<label for="na{{$index}}"></label>
+							</div>
+						</td>
+					</tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div class="col-xs-12" ng-if="optCtrl.produto.idTipoProduto == 3 && optCtrl.tab=='fracionados'">
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <i class="zmdi zmdi-plus zmdi-hc-2x text-primary" ng-click="optCtrl.abrirBuscaFracionado()"></i>
+                </div>
+                <div class="col-xs-2" ng-if="optCtrl.selecionados.length > 0">
+                    <i class="zmdi zmdi-delete zmdi-hc-2x text-danger" ng-click="optCtrl.excluirItens();"></i>
+                </div>
+            </div>
+            <table class="ta-table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="price-container">
+                                <div class="price">
+                                    <div class="front">{{optCtrl.produto.vrUnitario | currency}}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <p class="prod-desc">{{optCtrl.produto.stProdutoAbreviado}}</p>
+                            <p>{{optCtrl.produto.idCodigo}}</p>
+                        </td>
+
+                    </tr>
+                    <tr ng-repeat="item in optCtrl.produto.fracionados">
+                        <td>
+                            <div class="price-container" ng-click="optCtrl.selecionaItem(item)">
+                                <div class="price" ng-class="{'fliped':item.selecionado}">
+                                    <div class="front">{{item.vrUnitario * item.qt | currency}}</div>
+                                    <div class="back"><i class="zmdi zmdi-check zmdi-hc-3x"></i></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="prod-desc">{{item.stProdutoAbreviado}}</p>
+                            <p>{{item.idCodigo}}</p>
+                        </td>
+                        <td>
+                               <a style="line-height: 50px;" href="#" ng-click="optCtrl.excluirItem(item,$event)"><i class="zmdi zmdi-delete zmdi-hc-2x text-danger" ></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</form>

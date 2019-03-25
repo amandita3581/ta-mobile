@@ -1,0 +1,67 @@
+<form class="form" style="margin:20px 10px">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs tabs-mesa-comanda" ng-init="transfMC.tab='mesa'">
+              <li ng-class="{'active': transfMC.tab=='mesa'}"><a href="" ng-click="transfMC.tab = 'mesa'">Mesa</a></li>
+              <li ng-class="{'active': transfMC.tab=='comanda'}"><a href="" ng-click="transfMC.tab = 'comanda'">Comanda</a></li>
+              <li ng-class="{'active': transfMC.tab=='comanda-mesa'}"><a href="" ng-click="transfMC.tab = 'comanda-mesa'">Comanda - mesa</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" ng-if="transfMC.tab == 'mesa'"><!-- tab mesa -->
+             <div class="form-group">
+                <label>Mesa de origem:</label>
+                <input type="number" class="form-control numbers" ng-model="transfMC.mesaOrigem" disabled autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <label>Mesa de destino:</label>
+                <input type="number" class="form-control numbers" ng-model="transfMC.mesaDestino" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfMC.autenticar('mesa', transfMC.mesaDestino)">Transferir</button>
+            </div>
+        </div><!-- fim tab mesa -->
+
+
+        <div class="col-md-12" ng-if="transfMC.tab == 'comanda'"><!-- tab comanda -->
+            <div class="form-group">
+                <label>Comanda de origem:</label>
+                <select class="form-control" ng-model="transfMC.comandaOrigem">
+                    <option value="">Selecione uma comanda</option>
+                    <option value="{{item}}" ng-repeat="item in transfMC.comandas | orderBy:item">{{item}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Comanda de destino:</label>
+                <div ng-class="{'input-group' : !transfMC.config.localConfig.utilizaLeitorUsb}">
+                     <span class="input-group-btn"  ng-if="!transfMC.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info" type="button" ng-click="transfMC.openBarCodeScanner($event)"><i class="fa fa-barcode"></i></button>
+                    </span>
+                    <input id="comandaDestino" type="tel" class="form-control" ng-click="transfMC.validarLeitor($event)" ng-model="transfMC.comandaDestino" ng-keypress="transfMC.origemComanda = 'txt'" autocomplete="off"  />                    
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfMC.autenticar('comanda', transfMC.comandaDestino)">Transferir</button>
+            </div>
+        </div><!-- fim tab comanda -->
+
+
+
+        <div class="col-md-12" ng-if="transfMC.tab == 'comanda-mesa'"><!-- tab comanda-mesa -->
+             <div class="form-group">
+                <label>Comanda de origem:</label>
+              <select class="form-control" ng-model="transfMC.comandaOrigem2" multiple>
+                    <option value="{{item}}" ng-repeat="item in transfMC.comandas | orderBy:item">{{item}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mesa de destino:</label>
+                <input type="number" class="form-control numbers" ng-model="transfMC.mesaDestino2" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfMC.autenticar('comanda-mesa', transfMC.mesaDestino2)">Transferir</button>
+            </div>
+        </div><!-- fim tab comanda-mesa -->
+    </div>
+</form>

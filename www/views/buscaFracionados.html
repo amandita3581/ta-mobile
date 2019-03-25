@@ -1,0 +1,55 @@
+ <form class="form" style="margin:35px 10px 120px 10px;">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn" ng-if="!buscaFracCtrl.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info" type="button" ng-click="buscaFracCtrl.openBarCodeScanner($event)"><i class="fa fa-barcode"></i></button>
+                    </span>
+
+                    <input id="buscaProduto" type="text" class="form-control" ng-keyup="buscaFracCtrl.doSearch($event)" ng-model="buscaFracCtrl.termo" placeholder="Código ou nome do produto..." ta-focus autocomplete="off">
+
+                    <span class="input-group-btn">
+                          <button class="btn btn-primary" type="button" ng-click="buscaFracCtrl.doSearch({which:13})"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <select placeholder="Categoria" class="form-control" ng-options="item.idCategoria as item.stCategoria for item in buscaFracCtrl.categorias | orderBy:'stCategoria'" ng-change="buscaFracCtrl.ObterSubCategorias()" ng-model="buscaFracCtrl.categoria">
+                            <option value="">Categoria</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <select placeholder="Subcategoria" class="form-control" ng-disabled="buscaFracCtrl.subCategorias.length < 1" ng-options="item.idSubCategoria as item.stSubCategoria for item in buscaFracCtrl.subCategorias | orderBy:'stSubCategoria'" ng-model="buscaFracCtrl.subCategoria" ng-change="buscaFracCtrl.doSearch({which:13})">
+                            <option value="">Subcategoria</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="overflow:auto; height: 57vh;">
+              <table class="ta-table" ng-show="!buscaFracCtrl.isLoading && buscaFracCtrl.produtos.length > 0">
+                    <tbody>
+                    <tr ng-repeat="item in buscaFracCtrl.produtos"  ng-init="item.qt = 1">
+                        <td>
+                            <div class="price-container" ng-click="buscaFracCtrl.toggleProduto(item)">
+                                <div class="price" ng-class="{'fliped':item.adicionado}">
+                                    <div class="front" style="background-color:rgb(63,81,181);">{{item.vrUnitario * item.qt | currency}}</div>
+                                    <div class="back" style="background-color:green;">{{item.vrUnitario * item.qt | currency}}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="prod-desc">{{item.stProdutoAbreviado}}</p>
+                            <p>{{item.idCodigo}}</p>
+                            <p>{{item.observacoes}}</p>
+                        </td>
+                      
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+
+        <div class="acoes" ng-if="buscaFracCtrl.produtos.length > 0">
+            <button class="btn btn-primary" type="button" ng-click="buscaFracCtrl.limpar()"><i class="zmdi zmdi-block zmdi-hc-lg"></i></button>
+        </div>

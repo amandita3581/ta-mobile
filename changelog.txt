@@ -1,0 +1,258 @@
+1.0.205.10
+	- Alterada a versão do TA para que fique compatível com o LPG plus
+0.12.4
+	- Implementação do range de mesa por terminal
+	
+0.12.3
+	- Correção na exibição de mensagens na tela de Configuração do servidor.
+	
+0.12.2
+	- Alterações nas imagens de splash screen para que fiquem responsivas.
+
+0.12.1
+	- Adicionado método para instalação de atalho na area de trabalho ao iniciar o aplicativo pela primeira vez;
+	- Alterações na aquisição de tipo de atendimento;
+	- Correção no comportamento do botão "salvar sem imprimir";
+	- Alteração no modo immersivo;
+	- Adicionado botão de Trocar operador;
+	- Correção no tamanho da fonte do aplicativo
+	
+0.12.0
+	- Adicionado plugin de verificação da arquitetura do processador
+	- Implementada a atualização do aplicativo
+	- Implentada a verificação de aparelho online
+	- Implementada a exportação dos logs para o servidor
+0.10.1
+	- Correção na exibição da mensagem de validação no caso de transferencia 
+	  de comandas/mesas no atendimento por mesa-comanda
+
+0.10.0
+	- Adicionado o plugin da webview do crosswalk para maior compatibilidade.
+
+0.9.2
+	- Correção na obtenção de mesas
+
+0.9.1
+	- Corrigido a validação do range de mesas e comandas.
+	- Corrigido erro ao solicitar uma mesa/ comanda com o numero 0
+
+0.9.0
+	- Adicionada opção de exportação dos logs
+
+0.8.11
+	- Correção nos favoritos, o operador 99 estava fixo no codigo não permitindo o cadastro
+	  de favoritos para outros usuários
+	- Correção no atendimento por mesa para que ao liberar o atendimento, volte para a tela
+	  de seleção de mesas;
+	- Retirada a flag de habilitar log de requisições, realizando log 
+	  de todas as requisições realizadas
+
+0.8.10
+	- Correção na obtenção de mesa.
+	- Correção no foco do campo de busca de mesa ao iniciar o atendimento.
+
+0.8.9
+	- correção na validação de comanda sendo utilizada.
+    - correção na obtenção do ip do terminal.
+    - correção para o travamento descrito no chamado 12973
+	- Inclusão do botão de reiniciar configurações nas configurações do aplicativo.
+	
+0.8.8
+	- correção na exibição do teclado para os campos em foco.
+
+0.8.7
+	- Alteração na verificação de comanda bloqueada pelo terminal (chamado 12751);
+	- Configuração do tamanho do texto na tela através de um controle no menu;
+
+0.8.6
+	- Implementação de modo imersivo, para remover toda ui do android;
+	- Correção da ordenação da lista de comandas para geração de contas;
+
+0.8.5
+	- Implementada incluisão na mesa uma comanda que esteja sendo utilizada (e que não esteja em outra mesa). (chamado 12655)
+
+0.8.4
+	- Correção da verificação de permissão na liberação de mesa em fechamento de conta.
+
+0.8.3
+	- Implementada liberação de mesa em fechamento de conta meditante senha;
+	- Alteração no layout dos controles de checkbox e radio button;
+
+0.8.2
+	- Alteração na exibição do menu inferior.
+	- Alterações na liberação de comandas.
+
+0.8.1
+	- Retirada verificação de comanda sendo utilizada na mesa;
+	- Corrigida Liberação de atendimentos no caso de transferencia de mesa;
+
+0.8.0
+	- Liberada configuração de número de itens retornados na busca de produtos e o metodo de busca (inicia com ou contém o texto);
+	- Correção na exibição de quantidades na tela de conta;
+	- Melhoramentos na liberação de comandas e mesas;
+	- Correção do acesso a uma mesma comanda por multiplos terminais (chamado 12294);
+	- Implementada atualização automatica do status das mesa na tela de mesas;
+	- Correção do botão "selecionar todos" na aba de consumidos;
+	- Alteração na configuração do caminho do servidor. Não é mais necessário digitar http://, somente o ip e a porta.
+	
+0.7.11
+	- Correção na abertura de comandas em 2 terminais. (chamado 12294);
+	- Correção na exibição de mensagens;
+	- Correção na obtenção de comandas (atendimento mesa com multiplas comandas). Ao adicionar uma comanda que está
+	em uso, após a exibição da mensagem, o atendimento é liberado. (chamado 12440);
+	
+0.7.10
+	- Correção da liberação de comanda / mesa. O atendimento volta a ser salvo, porém o web service, 
+	ao pedir a liberação da comanda, faz a exclusão do pedido no banco de dados.(chamado 12318)
+
+0.7.9
+	- Correção na busca de códigos de barras cadastrados no sqgnet (chamado 12324)
+
+0.7.8
+	- Alteração para exibição da taxa de serviço na tela de exibição de conta (chamado 11783);
+	- Correção ref. a liberação de mesas (chamado 12318);
+	- Correção do tempo de permanencia na tela de exibição de conta (chamado 12344)
+
+0.7.7
+	- Inserido o botão de salvar tudo no atendimento por mesa com multiplas comandas. Ao clicar nele, tudo que está marcado 
+	como novo no banco de dados será impresso, em suas respectivas impressoras e separado por comanda (chamado 11805);
+	- Correção ref. a liberação de comandas (chamado 12318). Um novo atendimento para a comanda só será salvo se o usuário 
+	clicar em salvar.
+
+0.7.6 
+	- Alteração do método ObterMesaComanda para atender a nova assinatura do metodo no servidor;
+	- Corrigida a abertura da mesma comanda em multiplos terminais;
+	- Inserida verificação de leitura do codigo de barras vindo da balança;
+	- Correção do tipo de teclado. Agora o teclado é aberto corretamente conforme o campo em foco;
+	
+0.7.5
+	- Corrigido visualização do numero da comanda na leitura do código de barras (chamados 11794 e 11795);
+	- Inserida verificação se há itens na lista antes de trocar de comanda / mesa (chamado 11800);
+	- Implementada limpeza dos campos de pesquisa no foco (chamado 11841);
+	- Divisão do campo de pesquisa em 2: pesquisa por código (numérica) e por descrição (text) (chamado 11842);
+	- Corrigido bug de comanda bloqueada mesmo ao salvar ou sair da comanda (chamado 11844);
+	
+0.7.4
+	- Alterações no metodo de licença. Agora a licença é verificada a cada metodo chamado. Antes era verificado no inicio da requisição;
+   	- Corrigido bug de travamento em caso de produtos não encontrados.
+	
+0.7.3
+	- Correção do foco nos campos de quantidade.
+	
+0.7.2
+	- Adicionada seleção de comandas para fechar a conta no atendimento por mesa com multiplas comandas.
+	- Correção no foco dos campos de adicionar comandas e busca. (chamados 11454 e 11631).
+	- Correção na listagem de itens adicionais e fracionados na tela de fechamento de conta
+	
+0.7.1
+	- Alteração da validação de comandas e mesas. A validação ocorre no servidor, que verifica o range e se a comanda está nos padrões estabelecidos.
+
+0.7.0
+	- Inserção do logotipo no fundo do aplicativo;
+	- Liberada geração de conta somente no atendimento por mesa(excluindo mesa com multiplas comandas);
+	- Correção do foco no campo de comanda ao adicionar comandas (atendimento por mesa com multiplas comandas);
+	- Correção do metodo de adicionar comandas (atendimento por mesa com multiplas comandas). Agora, caso a comanda esteja em uso, é apresentada uma mensagem;
+	- Ao tentar voltar para a tela de login com itens pendentes no pedido, é apresentada mensagem de confirmação;
+	- Corrigida inversão dos itens adicionais. O campo flSem, quando 1, significa que o item não está adicionado;
+	
+0.6.1
+	- Correção na gravação de produtos com adicionais.
+	
+0.6.0
+ 	- Ao selecionar uma comanda da lista(mesa com multiplas comandas) o dropdown não fechava. Corrigido;
+ 	- Corrigida liberação de comandas no atendimento mesa com multiplas comandas. Ao liberar o atendimento, não retorna
+      para a tela de seleção de mesas por icones;
+    - Corrigida mensagem nos favoritos (chamado 11242);
+    - Corrigido foco nos campos de busca e busca de fracionados;
+    - Corrigido mensagem de conexão expirada; (chamado 11385)
+    - Inclusão da tela de logs de erros de comunicação com o servidor, acessada através de 5 clicks na tela sobre;
+	
+0.5.2
+	- Corrigida verificação de conexão com o servidor ao iniciar o sistema;
+	- Houve alteração nos cálculos de quantidade feitos pelo web service, corrigido na lista de itens consumidos;
+	- Agora o sistema volta a ignorar os zeros à esquerda dos campos de comanda. 
+	- Melhorias na exibição de mensagens na tela de configuração do servidor;
+	
+0.5.1
+	- Alteração das cores das mesas para ficarem iguais ao terminal balcão;
+	- Correção importante na gravação e transferencia de mesa e mesa com multiplas comandas;
+	
+0.5.0
+	- Liberação da tela de seleção de mesa (atendimento por mesa e mesa com multiplas comandas);
+	- Campo de quantidade para itens que fracionam a unidade agora é inserido em gramas;
+	- Correção da inserção do número da comanda com zeros à esquerda;
+	- Correção de exibição de quantidade para itens que fracionam a unidade, agora é exibida em gramas;
+	- Correção na transferência de mesa, na versão anterior só transferia o numero da mesa, porém a comanda permanecia a mesma;
+	- Alteração da legenda do campo de login do operador (tela inicial);
+	- Inserção do botão de excluir na linha do item fracionado;
+	
+0.4.2
+	- Alteração do ícone de confirmação na tela de login e na consulta de mesa / comanda;
+	
+0.4.1
+	- Corrigido bug de fechamento do menu;
+	- Corrigido bug de aumentar ou diminuir quantidade pelos botões;
+	- Inserção do botão de voltar no menu superior;
+	- Corrigido foco no campo usuário na tela de login;
+	- Corrigido a exibição de quantidade após a inserção de itens na tela de atendimento;
+	- Corrigido número de pessoas no atendimento por mesa, caso esteja vazio é inserido 1 por padrão.
+	
+0.4.0
+	- Liberado atendimento por mesa com várias comandas;
+	- Botão de Entrar alterado na tela de login;
+	- Botão de buscar produtos e limpar busca de produtos alterado;
+	- Tela de favoritos exibe mensagem caso não possua itens cadastrados;
+	- Leitura de código de barras na transferencia de comandas; 
+	
+0.3.6
+	- Correção de bug em campos decimais (android < 5);
+	- Alteração do plugin de notificação para compatibilidade com outras versões do android;
+
+0.3.5
+	- Correção de campos decimais, só é aceito uma vírgula no campo;
+	- Alteração na gravação de mesa e comanda:
+		- O pedido para mesa é gravado com o idComanda igual ao idMesa, não é mais necessário obter uma comanda para        atendimento mesa;
+		- O pedido para comanda é gravado com idMesa 0 ou nulo, sendo indiferente no atendimento;
+	- Inserido filtro de range de mesa no Ta: Caso o atendente solicite uma comanda que está no range de mesa, é exibida a mensagem "Mesa não existe";
+
+0.3.4
+    - Alteração na gravação de campos com casas decimais;
+    - Somente campos numéricos cujo item seja fracionado (flFracionado == true), aceitam vírgula ou ponto;
+	
+0.3.3
+	- Corrigido exibição da mensagem de produto não encontrado;
+	- Alteração da flBloqueada ao salvar o pedido. Antes, entendia-se que esta flag servia para informar que a comanda estava sendo utilizada pelo
+	  cliente, mas o correto é que ela serve para inutilizar uma comanda;
+	- Tela de loading agora aparece por cima da barra no topo;
+	
+0.3.2
+	- Correções na aquisição de configuração de mesa;
+	- Versão do sistema no menu sobre;
+	- Campo de usuário na tela de autenticação passa a ser numérico;
+	
+0.3.1
+	- Corrigido bug de cancelamento do scanner de código de barras. Antes ao apertar o botão voltar, o sistema entendia que o usuário estava
+	  querendo sair, agora, se o codigo de barras estiver aberto, não é exibida a mensagem;
+	- Inserido botão de reimprimir pedido;
+	
+0.3.0
+	- Liberado atendimento por mesa;
+	- Seleção do texto nas caixas de texto numéricas ao clicar no campo;
+	- Campos numéricos aceitam numeros decimais; 
+	- Corrigido bug de consulta por categorias e subcategorias;
+	- Ao selecionar uma categoria ou subcategoria, a pesquisa é atualizada automaticamente;
+	- Substituido icone de ações, agora os botoes ficam todos disponíveis na parte inferior em vez de clicar no botão para aparecer;
+	- Substituição do icone de aumentar ou diminuir quantidade;
+	- Produtos já inseridos no pedido atual, são marcados como inseridos na busca de produtos e nos favoritos;
+	- Inserido botão de Limpar na Busca de produtos;
+	- Inserido botão de pesquisar na busca de comanda e mesa. O teclado numérico do android não possui tecla enter, então nesse caso, 
+	  é necessário clicar no botão.
+	
+0.2.4 
+	- Libera o atendimento atual ao sair da aplicação;
+	- Define a comanda como padrão de seleção na tela de configuração, caso nenhuma configuração esteja definida;
+	- Corrigido bug que permite a inserção de valores nulos, em branco ou abaixo de 1 na quantidade dos itens;
+	- Alteração no tipo de notificação mobile. Agora utilizando toast em vez de bootstrap notify;
+	- Atualizado para receber a reposta correta do web service no metodo ObterRespostaWebservice;
+	- Inserção de botões na lista de produtos para aumentar ou diminuir a quantidade de itens;
+	- Atualização de bloqueio de comanda por usuários. O usuário que bloqueou a comanda tem acesso à mesma.

@@ -1,0 +1,17 @@
+﻿<form class="form" style="margin:20px 10px">
+    <div class="row">
+        <div class="col-md-12">
+            <label>Mesa de Origem:</label>
+            <div class="form-group">
+                <input type="text" class="form-control numbers" ng-model="transfCtrl.mesaOrigem" disabled autocomplete="off" />
+            </div>
+            <label>Mesa de Destino:</label>
+            <div class="form-group">
+                <input id="mesaDestino" type="number" class="form-control numbers" ng-model="transfCtrl.mesaDestino" autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfCtrl.autenticar('comanda')">Transferir</button>
+            </div>
+        </div>
+    </div>
+</form>

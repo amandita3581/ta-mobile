@@ -1,0 +1,133 @@
+﻿<div class="form-group" ng-show="ctrl.mesaLocalizada">
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-btn" ng-if="buscaCtrl.config.localConfig.utilizaLeitorUsb == '0'">
+                        <button class="btn btn-info input-sm" type="button" ng-click="ctrl.openBarCodeScanner()"><i class="fa fa-barcode"></i></button>
+                    </span>
+                    <input type="tel" class="form-control input-sm" ng-model="ctrl.codigoProduto" placeholder="Código do produto" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary input-sm" type="button" ng-click="ctrl.ObterProduto()"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" ng-init="ctrl.tab='itens'">
+                <li ng-class="{'active': ctrl.tab=='itens'}"><a href="" ng-click="ctrl.tab = 'itens'">Itens</a></li>
+                <li ng-class="{'active': ctrl.tab=='consumidos'}"><a href="" ng-click="ctrl.tab = 'consumidos'">Consumidos</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-12" ng-if="ctrl.tab=='itens'" style="overflow:auto; height:48vh;">
+            <table class="ta-table">
+                <tbody>
+                    <tr ng-repeat="item in ctrl.itens | filterMaxValFracionado">
+                        <td>
+                            <div class="price-container" ng-click="ctrl.selecionaItem(item)">
+                                <div class="price" ng-class="{'fliped':item.selecionado}">
+                                    <div class="front">{{ctrl.formataValorTotalItem(item) | currency}}</div>
+                                    <div class="back"><i class="zmdi zmdi-check zmdi-hc-3x"></i></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="prod-desc">
+                                {{item.stProdutoAbreviado}}<i class="zmdi zmdi-pizza zmdi-hc-lg text-danger" ng-if="item.idTipoProduto == 3"></i>
+                                <i ng-if="item.flRequererItemAdicional" class="zmdi zmdi-attachment-alt zmdi-hd-lg"></i>
+                            </p>
+                            <p>{{item.idCodigo}}</p>
+                            <p>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="ctrl.sub(item)"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                                    </span>
+                                    <input type="number" class="form-control numbers set-default" placeholder="qt" ng-model="item.qt" ng-class="{decimal: item.flFracionado}" min="0" autocomplete="off">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="ctrl.add(item)"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                                <span>
+                                    {{(item.vrPizza || item.vrUnitario) | currency}} / {{item.stMedida}}
+                                </span>
+                            </p>
+                            <p>{{item.observacoes}}</p>
+                            <div id="item-adicionais" class="subItens" ng-if="(item.adicionais | filterAdicionais).length > 0">
+                                <h6>Adicionais</h6>
+                                <div>
+                                    <table class="table-adicionais">
+                                        <tr ng-repeat="add in item.adicionais | filterAdicionais">
+                                            <td>{{add.flAdicionado == 0  ? 'Com' : 'Sem' }}&nbsp;{{add.stProdutoAbreviado}}</td>
+                                            <td style="text-align:right;">{{add.flAdicionado == 0  ? add.vrUnitario : 0  | currency}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="item-fracionados" class="subItens" ng-if="item.fracionados.length > 0">
+                                <h6>Fracionados</h6>
+                                <div ng-repeat="frac in item.fracionados">{{frac.stProdutoAbreviado}}</div>
+                            </div>
+                        </td>
+                        <td style="text-align:right;">
+                            <i class="zmdi zmdi-plus-square zmdi-hc-4x text-success" ng-click="ctrl.abrirOpcoes(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-12" ng-if="ctrl.tab == 'consumidos'" style="overflow:auto; height: 48vh;">
+            <table class="table" style="font-size:0.73em;margin-top:10px">
+                <tr ng-show="ctrl.itensPedido.length > 0">
+                    <td colspan="3">
+                        <div class="checkbox checkbox-primary">
+                            <input id="chkSelecionarTodos" type="checkbox" ng-model="ctrl.selecionarTodosParaReimpressao">
+                            <label for="chkSelecionarTodos"> Selecionar todos</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat="item in ctrl.itensPedido" ng-if="item.idComanda">
+                    <td style="width:25px;">
+                        <div class="checkbox checkbox-primary">
+                            <input type="checkbox" id="selecionar{{$index}}" ng-model="item.selecionado" ng-change="ctrl.itemConsumidoSelecionado()">
+                            <label for="selecionar{{$index}}"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span>DESC.: {{item.stProdutoAbreviado}}</span><br>
+                            <span>QT: {{ item.flFracionado ? ctrl.formataGramasParaKilo(item.nrQuantidade) + 'g' : item.nrQuantidade }}</span><br>
+                            <span>{{item.vrUnitario | currency}} / {{item.stMedida}}</span><br>
+                        </div>
+                        <div id="item-adicionais" class="subItens" ng-if="item.adicionais.length > 0">
+                            <h6>Adicionais</h6>
+                            <div>
+                                <table class="table-adicionais">
+                                    <tr ng-repeat="add in item.adicionais">
+                                        <td>{{add.flSem ? 'Sem' : 'Com'}}&nbsp;{{add.stProdutoAbreviado}}</td>
+                                        <td style="text-align:right;">{{add.vrTotal | currency}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="item-fracionados" class="subItens" ng-if="item.fracionados.length > 0">
+                            <h6>Fracionados</h6>
+                            <div ng-repeat="frac in item.fracionados">{{frac.stProdutoAbreviado}}</div>
+                        </div>
+                        <div id="item-observacoes" class="subItens" ng-if="item.stIncremento != ''">
+                            <h6>Observa&#231;&#245;es</h6>
+                            <div>{{item.stIncremento}}</div>
+                        </div>
+                    </td>
+                    <td style="text-align:right;">
+                        <span>{{item.vrTotal | currency}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

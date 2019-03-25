@@ -1,0 +1,26 @@
+﻿<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Adicionar Comanda</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div ng-class="{'input-group' : !config.localConfig.utilizaLeitorUsb}">
+                            <span class="input-group-btn" ng-if="!config.localConfig.utilizaLeitorUsb">
+                                <button class="btn btn-info" type="button" ng-click="openBarCodeScanner($event, 'add')"><i class="fa fa-barcode"></i></button>
+                            </span>
+                            <input type="tel" class="form-control" placeholder="Comanda" ng-model="comanda" ng-keyup="addComandaKeyUp($event)" ta-focus inserir-foco="true" autocomplete="off"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Fechar</button>
+                <button type="button" id="addComanda" class="btn btn-primary" ng-click="addComanda()" ng-show="!config.localConfig.utilizaLeitorUsb">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>

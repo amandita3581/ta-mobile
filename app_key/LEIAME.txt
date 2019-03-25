@@ -1,0 +1,39 @@
+INSTRUÇÕES DESENVOLVIMENTO TA
+
+1. Pré requisitos de software:
+- Nodejs
+- JDK
+- SDK ANDROID
+- 7zip (geração de pacote)
+
+2. Iniciando o projeto
+- Clonar o repositório
+- Executar o comando npm install para instalar todas as dependencias do projeto.
+- Adicionar a plataforma android com o comando "phonegap platform add android".
+	- Este comando instala todos os plugins e coloca os arquivos modificados para a plataforma android
+	
+	
+	
+3. Distribuindo o aplicativo
+- Alterar a versão do aplicativo nos arquivos config.xml e package.json
+- Executar o comando "gulp dist" para gerar um pacote de aplicativo com debug habilitado;
+- Com o comando "gulp dist --release" gera um pacote de release (não debugável);
+- O pacote é gerado na pasta apk com o nome ta-v{versao do aplicativo}.exe 
+
+
+4. Configurações da geração do pacote
+- Para configurar o pacote deve-se alterar o arquivo na pasta tools config.txt
+
+
+5. Diretórios
+
+
+***obs
+Todos os comandos mencionados devem ser executados na raiz do projeto
+
+
+
+
+
+
+

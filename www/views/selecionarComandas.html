@@ -1,0 +1,21 @@
+<form class="form-conta" style="margin:10px 10px 120px 10px;">
+	<div class="form-group">
+		<h4>Selecione as comandas:</h4>
+		<div class="checkbox checkbox-primary">
+			<input type="checkbox" id="checkboxSelecionarTodas" ng-model="selComCtrl.todasSelecionadas">
+			<label for="checkboxSelecionarTodas">
+				{{selComCtrl.todasSelecionadas ? 'Deselecionar' : 'Selecionar'}} todas
+			</label>
+		</div>
+
+		<div class="checkbox checkbox-primary" ng-repeat="item in selComCtrl.comandas">
+			<input type="checkbox" id="{{item.comanda}}" ng-model="item.selecionado">
+			<label for="{{item.comanda}}">
+				{{item.comanda}}
+			</label>
+		</div>
+	</div>
+	<div class="form-group">
+		<button type="button" class="btn btn-primary pull-right" ng-click="selComCtrl.avancar()">Avançar</button>
+	</div>
+</form>

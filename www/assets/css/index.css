@@ -1,0 +1,605 @@
+body{
+    background-color: transparent;
+	font-size:1.6em !important;
+}
+
+.hdpi-screen{
+	zoom:1.2;
+}
+
+.mdpi-screen{
+	zoom:1.1;
+}
+
+.ldpi-screen{
+	zoom:1.2;
+}
+
+.imagemFundo-SQG-container{
+    position:fixed;
+    width:100%;
+    text-align:center;
+    top: 30%;
+}
+
+.imagemFundo-SQG{
+    opacity:0.1;
+}
+
+.rangeContainer{
+	text-align:center;
+}
+.loading, .background-loading{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    display:table-cell;
+    text-align:center;
+    z-index:1040;
+}
+
+.input-group>input[type='number']{
+     padding-right:0;
+     width:101%;
+}
+
+.background-loading{
+    background-color:black;
+    opacity:0.4;
+}
+
+.loading i{
+    vertical-align:middle;
+    margin-top:50%;
+    z-index:1002;
+}
+
+.tabs-mesa-comanda>li>a {
+    padding: 10px 7px !important;
+}
+
+
+.item-add{
+    background-color:green;
+    color:white;
+}
+
+.text-yellow{
+    color:yellow;
+}
+
+
+.userInfo{
+    color: white;
+    position: absolute;
+    font-size: 0.7em;
+    width: 100%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.acoes{
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.acoes button{
+    margin-left:10px;
+}
+
+.row.padding-sm > div{
+    padding-right:2px;
+    padding-left:2px;
+}
+
+.row.padding-sm > div:first-child{
+    padding-left:15px;
+}
+.row.padding-sm > div:last-child{
+    padding-right:15px;
+}
+
+.input-password{
+    -webkit-text-security: disc; 
+    -moz-text-security: disc; 
+    text-security: disc;
+}
+
+/***********************
+=dialog fracionados
+***********************/
+
+.busca-fracionado div.top{
+    position:absolute;
+    top:64px;
+    bottom:50%;
+    left:0;
+    right:0;
+}
+
+.busca-fracionado .itens-adicionados{
+    height: 200px;
+    background-color:white;
+    position: absolute;
+    bottom:0;
+    right:0;
+    left:0;
+}
+.busca-fracionado .itens-adicionados > div{
+    height: 150px;
+    width:100%;
+    overflow:auto;
+}
+
+.ta-table-adicionais-radio{
+    max-width:20px;
+    text-align:center;
+    padding: 3px;
+}
+
+
+/*************************************
+= Litagem de itens do atendimento
+*************************************/
+.ta-table{
+    font-size: 0.6em;
+    border:0;
+    border-collapse:collapse;
+    width: 100%;
+}
+
+.ta-table td,.ta-table p{
+    margin:0;
+    text-transform:uppercase;
+}
+
+.ta-table td{
+    padding: 5px;
+    border-bottom: dashed 1px rgba(0,0,0,0.12);
+    vertical-align: top !important;
+}
+
+.ta-table > tbody tr td:first-child{
+    width: 54px;
+}
+
+.ta-table p{
+    padding: 1px 0;
+}
+
+.ta-table .input-group {
+  max-width: 120px;
+}
+.ta-table .input-group button {
+  padding: 0px 4px;
+  z-index:0 !important;
+}
+.ta-table .input-group button i {
+  font-size: .7em;
+}
+.ta-table .input-group input[type='number'] {
+  padding: 0 1px;
+  text-align: center;
+}
+.ta-table .input-group .input-group-btn button,
+.ta-table .input-group input {
+  height: 24px;
+}
+
+    .ta-table .input-group .form-control {
+        z-index: 0;
+        float: none;
+    }
+
+.prod-desc{
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.ta-table .price-container{
+    width:50px;
+    height:50px;
+    position:relative;
+    text-align:center;
+    outline: none;
+    font-size:1.1em;
+    /*perspective: 50px;*/
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-animation-fill-mode: forwards;
+}
+
+.ta-table .price{
+    width:100%;
+    height:100%;
+    position:absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: transform 0.7s;
+    -moz-transition: transform 0.7s;
+    -ms-transition: transform 0.7s;
+    -o-transition: transform 0.7s;
+    transition: transform 0.7s;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.ta-table .price div{
+    margin:0;
+    display:block;
+    position:absolute;
+    color:white;
+    width:100%;
+    height:100%;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.ta-table .price div i{
+    line-height: 50px;
+}
+
+.ta-table .price .front{
+    background-color:green;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    line-height: 50px;
+}
+
+.ta-table .price .back{
+    line-height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color:red;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.table-adicionais{
+	width:100%;
+}
+.table-adicionais tr td:first-child{
+	width: 75% !important;
+}
+.table-adicionais tr td{
+	padding: 0;
+    border: none;
+    vertical-align: none;
+}
+
+.price.fliped{
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+
+.navbar{
+    background-color:rgb(16,108,200);
+
+}
+
+.navbar-inverse .navbar-brand {
+    color: white !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white !important;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #204d74 !important;
+    background-color:#286090 !important;
+}
+
+
+.navbar-inverse .navbar-toggle:hover {
+    border-color: #204d74 !important;
+    background-color:#286090 !important;
+}
+
+
+.input-group .search-icon{
+    position: absolute;
+    z-index: 10;
+    margin-top: 4px;
+    margin-left: 7px;
+}
+
+.wrapper{
+    position: relative;
+}
+.progress{
+    height:0 !important;
+    margin-bottom: 0 !important;
+    margin-top:50px;
+}
+
+.progress-bar.active{
+        width: 100%;
+    position: absolute;
+    height: 19px;
+}
+
+.bottom-toolbar{
+    background-color:#286090;
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+    /* padding:13px 0; */
+    color:white;
+    z-index: 10;
+}
+
+.bottom-toolbar >div{
+    padding: 10px 0;
+}
+
+.bottom-toolbar a,.bottom-toolbar a:hover, .bottom-toolbar a:active, .bottom-toolbar a:visited{
+    color:white;
+}
+
+.bottom-toolbar a.active{
+    color:#78a4cb;
+}
+
+.add-item{
+    width:60px;
+    height:60px;
+    position:fixed;
+    bottom:80px;
+    right:20px;
+    border-radius: 50%;
+    text-align:center;
+}
+
+.add-item i{
+    line-height:40px;
+}
+
+.form-group> label{
+    font-size:0.8em;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: top !important;
+}
+
+.btn-group.grupo-selecao-comandas, .btn-group-vertical {
+    width: 100% !important;
+}
+
+.dropdown-menu {
+    min-width: 0 !important;
+ 
+}
+
+.btn-group.grupo-selecao-comandas > .btn:first-child {
+    width: 100% !important;
+}
+
+
+/**************************
+= itens consumidos
+**************************/
+
+.subItens h6{
+    font-weight: 700 !important;
+    border-bottom: solid 1px black;
+}
+
+.subItens div{
+    padding-left:5px;
+}
+
+
+
+/**************************
+= estilos para tela de conta
+**************************/
+
+.form-conta{
+    font-size:0.8em;
+}
+
+.form-conta h5
+{
+    margin:0;
+    padding:0;
+}
+
+
+.form-conta .well .form-group:not(:last-child), .form-conta .well .form-group:not(:first-child){
+    border-bottom: 1px dashed black;
+}
+
+.form-conta .form-group{
+    margin:0;
+    padding:0;
+    padding: 10px 0;
+}
+
+.form-conta table{
+    width:100%;
+}
+
+.form-conta table tr td table tr td:not(:last-child){
+    padding-right: 3px;
+}
+
+.form-conta table tr td:last-child{
+
+}
+
+.form-conta table tr td table tr td:first-child{
+    width: 10%;
+}
+
+.form-conta table tfoot tr td {
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.form-conta .linha-tabulada{
+    padding-left: 30px;
+}
+
+.form-conta .align-right{
+    text-align:right;
+}
+
+
+/***************************
+= estilos para a tela de seleção de mesa co imagens
+***************************/
+
+.container-mesas{
+    max-width:90%;
+    margin:0 auto;
+    text-align:center;
+}
+.icon-mesa{
+    width:20%;
+    margin:10px;
+    max-width: 40px;
+    display:inline-block;
+}
+.icon-mesa svg{
+    width:100%;
+    height: 100%;
+}
+
+.icon-mesa.mesa-livre svg .image-mesa path, .icon-mesa.mesa-livre svg .image-mesa rect {
+    fill: #00ff00 !important;
+}
+
+.icon-mesa.mesa-ocupada svg .image-mesa path, .icon-mesa.mesa-ocupada svg .image-mesa rect {
+    fill: #0000ff !important;
+}
+
+.icon-mesa.mesa-fechandoConta svg .image-mesa path, .icon-mesa.mesa-fechandoConta svg .image-mesa rect {
+    fill: #ffd700 !important;
+}
+
+.icon-mesa div{
+    width: 100%;
+    text-align: center;
+}
+
+
+.legenda-container{
+    margin:20px;
+}
+.legenda-container p{
+    line-height:15px;
+}
+
+
+.legenda-container p span{
+    width: 15px; 
+    height:15px; 
+    margin: 0 10px;
+    display:inline-block;
+    
+}
+
+.legenda-container p:nth-child(1) span{
+    background-color:#00ff00;
+}
+
+.legenda-container p:nth-child(2) span{
+    background-color:#0000ff;
+}
+
+.legenda-container p:nth-child(3) span{
+    background-color:#ffd700;
+}
+
+.legenda-container p:nth-child(4) span{
+    background-color:#800080;
+}
+
+
+/****************************
+= estilos da tela de logs
+****************************/
+
+.panel-body p{
+    word-wrap: break-word;
+}
+
+/****************************
+= estilos para a tela de atendimento MT
+*/
+.row-botao-excluir{ margin: 1vh 0 1vh 0; }
+.lista-itens-atendimentoMt {
+    max-height: 78vh;
+    overflow: auto;
+    padding-bottom: 50px;
+    font-size: 0.9em;
+}
+
+.lista-itens-atendimentoMt .input-group{
+    max-width: 170px;
+}
+
+.lista-itens-atendimentoMt .input-group .form-control{
+    margin-left: -1px;
+}
+
+.ultimo-produto{
+    font-size: 0.6em;
+    position: absolute;
+    bottom: 7px;
+}
+
+
+
+
+/****************************
+= animação de paginas
+****************************/
+
+/* @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes rotateFall {
+    0%      { transform: rotateZ(0deg); }
+    20%     { transform: rotateZ(10deg); animation-timing-function: ease-out; }
+    40%     { transform: rotateZ(17deg); }
+    60%     { transform: rotateZ(16deg); }
+    100%    { transform: translateY(100%) rotateZ(17deg); }
+}
+
+@keyframes slideInRight {
+    from    { transform:translateY(100%); }
+    to      { transform: translateX(0); }
+}
+
+ .ng-enter{ animation: fadeIn 0.3s both ease-in; } */

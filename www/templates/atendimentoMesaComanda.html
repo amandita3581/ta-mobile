@@ -1,0 +1,25 @@
+﻿<form class="form" style="margin:10px 10px 50px 10px;" ng-cloak>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Mesa</label>
+                <input id="txtMesa" name="mesa" type="number" class="form-control input-sm numbers" ng-model="atendCtrl.mesa" disabled  autocomplete="off"/>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Comanda</label>
+                <div class="btn-group grupo-selecao-comandas">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-enabled="atendCtrl.mesaLocalizada">
+                        {{atendCtrl.comanda || 'Comanda'}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" ng-click="atendCtrl.abrirTelaComanda($event)">{{atendCtrl.microterminal.flLeitor ? "Ler Comanda" : "Adicionar"}}</a></li>
+                        <li ng-repeat="item in atendCtrl.comandas | orderBy:item">
+                            <a href="#" ng-click="atendCtrl.flValidaDv = false; atendCtrl.selecionarComanda($event, item)">{{item}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <tabs-atendimento></tabs-atendimento>
+</form>

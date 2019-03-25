@@ -1,0 +1,92 @@
+{
+    "name": "terminal-atendimento",
+    "version": "1.0.205.80",
+    "description": "",
+    "main": "www/index.html",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "./node_modules/.bin/gulp installPlugins"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://bitbucket.org/samurodrigo/terminal-atendimento-novo.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "homepage": "https://bitbucket.org/samurodrigo/terminal-atendimento-novo#readme",
+    "devDependencies": {
+        "fs-extra": "^0.26.5",
+        "gulp-clean": "^0.3.1",
+        "gulp-cordova-build-android": "^1.3.0",
+        "gulp-cordova-plugin": "^1.4.0",
+        "gulp-cordova-plugin-remove": "^1.0.0",
+        "gulp-exec": "^2.1.2",
+        "gulp-ignore": "^2.0.1",
+        "gulp-jshint": "^2.0.0",
+        "gulp-rename": "^1.2.2",
+        "jshint": "^2.9.1",
+        "map-stream": "0.0.6",
+        "moment": "^2.11.2",
+        "run-sequence": "^1.1.5"
+    },
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "gulp": "^3.9.1",
+        "phonegap": "6.0.0",
+        "wp8": "^3.8.0",
+        "cordova-ios": "4.2.0",
+        "cordova-windows": "4.4.2",
+        "com.plugins.shortcut": "0.1.1",
+        "com.virtualartifacts.webintent": "1.0.0",
+        "cordova-plugin-app-version": "~0.1.9",
+        "cordova-plugin-barcodescanner": "0.7.0",
+        "cordova-plugin-crosswalk-webview": "~2.2.0",
+        "cordova-plugin-device": "1.1.0",
+        "cordova-plugin-file": "3.0.0",
+        "cordova-plugin-file-transfer": "1.5.0",
+        "cordova-plugin-fullscreen": "1.1.0",
+        "cordova-plugin-network-information": "1.2.0",
+        "cordova-plugin-networkinterface": "1.0.8",
+        "cordova-plugin-pin-dialog": "0.1.3",
+        "cordova-plugin-serial": "0.0.3",
+        "cordova-plugin-splashscreen": "3.0.0",
+        "cordova-plugin-statusbar": "2.1.1",
+        "cordova-plugin-whitelist": "1.2.0",
+        "fr._46cl.focus": "0.1.3",
+        "samurodrigo-cordova-plugin-devicereport": "0.0.1"
+    },
+    "cordova": {
+        "platforms": [
+            "android",
+            "ios",
+            "windows",
+            "wp8"
+        ],
+        "plugins": {
+            "com.plugins.shortcut": {},
+            "com.virtualartifacts.webintent": {},
+            "cordova-plugin-app-version": {},
+            "cordova-plugin-barcodescanner": {},
+            "cordova-plugin-crosswalk-webview": {
+                "XWALK_VERSION": "22+",
+                "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+                "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+                "XWALK_MODE": "embedded",
+                "XWALK_MULTIPLEAPK": "true"
+            },
+            "cordova-plugin-device": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-fullscreen": {},
+            "cordova-plugin-network-information": {},
+            "cordova-plugin-networkinterface": {},
+            "cordova-plugin-pin-dialog": {},
+            "cordova-plugin-serial": {},
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "fr._46cl.focus": {},
+            "samurodrigo-cordova-plugin-devicereport": {}
+        }
+    }
+}

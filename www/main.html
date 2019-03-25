@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="initial-scale=1, user-scalable=0, width=device-width, minimun-scale=1" id="textViewPort" />
+    <link rel="stylesheet" href="assets/components/material-design-iconic-font/css/material-design-iconic-font.min.css" />
+    <link rel="stylesheet" href="assets/components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/components/font-awesome-4.4.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/components/ngToast/ngToast.min.css">
+    <link rel="stylesheet" href="assets/components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css">
+    <link rel="stylesheet" href="assets/components/bootstrap-slider/bootstrap-slider.css">
+    <link rel="stylesheet" href="assets/components/custom-icons/style.css">
+
+    <!-- build:css assets/css/dist.min.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/teclado-virtual.css" />
+
+    <!--endbuild-->
+    <script type="text/javascript" src="assets/components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/components/jquery-soap/xml2json.js"></script>
+    <script type="text/javascript" src="assets/components/jquery-soap/jquery.soap.js"></script>
+    <script type="text/javascript" src="assets/components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="assets/components/ngToast/ngToast.min.js"></script>
+    <script type="text/javascript" src="assets/components/moment/moment-with-locales.js"></script>
+    <script type="text/javascript" src="assets/components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="assets/components/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular/angular-locale_pt-br.js"></script>
+    <script type="text/javascript" src="assets/components/bootstrap-slider/bootstrap-slider.js"></script>
+    <script type="text/javascript" src="assets/components/angular-bootstrap-slider/slider.js"></script>
+    <script type="text/javascript" src="assets/components/ng-cordova/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="assets/components/angular-modal-service/angular-modal-service.min.js"></script>
+    <script type="text/javascript" src="assets/components/mn-touch/mn-touch.min.js"></script>
+    <title>Terminal de Atendimento</title>
+</head>
+<body ng-controller="MainController as main" ng-init="$root.isLoading = false; main.zoom ? main.zoom : 1; $root.mostraBotaoVoltar = true" onselectstart="return false;" ng-style="{'zoom': main.zoom}" style="-webkit-overflow-scrolling: touch; ">
+    <div class="imagemFundo-SQG-container">
+        <img alt="SQG NET" src="assets/img/logo_TA.jpg" class="imagemFundo-SQG" />
+    </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(16,108,200);">
+        <a ng-href="#{{main.config.localConfig.ativarModoTablet ? $root.backActionModoTablet : $root.backAction}}"
+           class="btn btn-success"
+           style="position: absolute; margin: 8px;" id="back-buttom"
+           ng-if="$root.idOperador && $root.ip && $root.mostraBotaoVoltar"
+           ng-cloak>
+            <i class="glyphicon glyphicon-arrow-left"></i>
+        </a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed btn btn-info" data-toggle="collapse" data-target="#navbar-top" aria-expanded="false">
+                    <span class="sr-only">Mostrar menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="padding-top:20px; margin-left:40px; font-size: 1.2em;" class="navbar-brand ng-cloak" ng-if="$root.backAction">TA - {{$root.pageTitle}}</a>
+                <div style="padding-top:5px; margin-left:40px" ng-if="$root.idOperador && $root.ip" class="userInfo" ng-cloak>Op: {{$root.stApelidoOperador}} - IP:{{$root.ip}}</div>
+            </div>
+
+            <!--Menu de configurações do TA-->
+            <div class="collapse navbar-collapse" id="navbar-top">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-href="javascript:void(0)" ng-click="main.doLogin($event)"><i class="fa fa-gears"></i> Configurações</a></li>
+                    <li ng-if="!main.ativarModoTablet"><a ng-href="javascript:void(0)" ng-click="main.irParaPagina('home')"><i class="fa fa-user"></i> Trocar Operador</a></li>
+                    <li><a href="javascript:void(0)" ng-click="main.mostrarSobre($event)"><i class="fa fa-question-circle"></i> Sobre</a></li>
+                    <li><a href="javascript:void(0)" ng-click="main.exitApp()"><i class="fa fa-sign-out"></i> Sair</a></li>
+                    <li class="visible-xs-block"><a href="javascript:void(0)"><i class="fa fa-arrows-alt"></i> Tamanho <span style="text-decoration:underline" ng-click="main.setDefaultZoom()">(restaurar)</span></a></li>
+                    <li class="visible-xs-block">
+                        <a href="javascript:void(0)">
+                            <slider ng-model="main.zoom" min="0.9" step="0.10" max="1.2" value="main.zoom" style="width:90%; zoom:1" data-slider-tooltip="hide"></slider>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <div class="animate" ng-view style="padding-top:50px"></div>
+        <div>
+
+            <div class="bottom-toolbar" ng-if="$root.atendimentoIniciado" ng-cloak>
+                <numeric-keyboard ng-show="$root.exibirTecladoVirtual"></numeric-keyboard>
+                <div class="row">
+                    <div ng-click="main.voltarParaAtendimento()" class="col-xs-2 col-xs-offset-1" style="text-align:center;cursor:pointer;">
+                        <a href="" ng-class="{active:$root.pageTitle == 'Atendimento'}"><i class="zmdi zmdi-assignment zmdi-hc-2x"></i></a>
+                    </div>
+                    <div ng-click="main.irParaPagina('busca')" class="col-xs-2" style="text-align:center;cursor:pointer;">
+                        <a href="" ng-class="{active:$root.pageTitle == 'Busca'}"><i class="zmdi zmdi-search zmdi-hc-2x"></i></a>
+                    </div>
+                    <div ng-click="main.irParaPagina('favoritos')" class="col-xs-2" style="text-align:center;cursor:pointer;">
+                        <a href="" ng-class="{active:$root.pageTitle == 'Favoritos'}"><i class="zmdi zmdi-star zmdi-hc-2x"></i></a>
+                    </div>
+                    <div ng-click="main.transferir($event)" class="col-xs-2" style="text-align:center;cursor:pointer;">
+                        <a href="" ng-class="{active:$root.pageTitle == 'Transferir'}"><i class="zmdi zmdi-swap zmdi-hc-2x"></i></a>
+                    </div>
+                    <div ng-click="main.emitirConta($event)" class="col-xs-2" style="text-align:center;cursor:pointer;">
+                        <a href="" ng-class="{active:$root.pageTitle == 'Conta'}"><i class="zmdi zmdi-money zmdi-hc-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalAuth" tabindex="-1" role="dialog" aria-labelledby="modalAuth">
+        <div class="modal-dialog  modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background:#efb540;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalAuthLabel">Autenticação</h4>
+                </div>
+
+                <!--Modal Operador-->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="tel" class="form-control numbers input-password" placeholder="Usuário" id="txtUsuarioAuth" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="tel" class="form-control input-password" id="txtSenhaAuth" placeholder="Senha" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="text-align:right;">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-primary" id="entrar">Entrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSobre" tabindex="-1" role="dialog" aria-labelledby="modalSobre">
+        <div class="modal-dialog  modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Sobre</h4>
+                </div>
+                <div class="modal-body" ng-click="main.count()">
+                    <div style="text-align:center;">
+                        <img src="assets/img/logo_sqg.png" alt="SQG Info" />
+                        <h3>Terminal de Atendimento</h3>
+                        <p>Versão: {{$root.appVersion}}</p>
+                        <hr />
+                        <h4>Licenciado para:</h4>
+                        <p>{{main.config.configuracao.stRazaoSocial}}</p>
+                        <p>{{main.info.manufacturer + ' ' + main.info.model}}</p>
+                        <p>{{main.info.platform + ' ' + main.info.version + ' - ' + main.info.architecture}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading" ng-show="main.isLoading">
+        <div class="background-loading"></div>
+        <i class="fa fa-cog fa-spin fa-4x"></i>
+    </div>
+
+    <div class="progress-container loading" style="margin-top: -10px;width: 80%;margin: 0px auto;" ng-show="main.downloadIniciado" ng-cloak>
+        <div class="background-loading"></div>
+        <div class="progress" style="height:20px !important; margin-top: 250px;">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{main.downloadProgress}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: main.downloadProgress + '%'}">
+                <span class="sr-only">{{main.downloadProgress | number : 0}}%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-success" style="position: absolute;right: 10px;top: 52px;" ng-class="{'text-danger': !$root.onlineState}">
+        <i class="zmdi zmdi-wifi-alt zmdi-hc-lg" ng-class="{'zmdi-wifi-info': !$root.onlineState}"></i>
+        <i class="fa fa-barcode" ng-if="main.flLeitor"></i>
+    </div>
+    <toast></toast>
+
+
+
+    <!-- cordova files-->
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!-- build:js assets/js/dist.min.js -->
+    <script type="text/javascript" src="assets/js/index.js"></script>
+
+    <!--modules-->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+
+    <!--controllers-->
+    <script type="text/javascript" src="assets/js/controllers/MainController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/HomeController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/ConfigController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/DialogController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/AtendimentoController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/AtendimentoMesaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/AtendimentoComandaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/AtendimentoMesaComandaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/AtendimentoMtController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/BuscaProdutosController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/FracionadosController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/ConfigServerController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/OpcoesController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/BuscaFracionadosController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/FavoritosController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/TransferirController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/TransferirMesaComandaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/ContaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/InicioAtendimentoMesaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/LogsController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/SelecionarComandasController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/TabsAtendimentoController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/BotoesAcaoController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/ModalComandaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/TransferirComandaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/TransferirMesaController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/ModalAdicionaisController.js"></script>
+
+    <!--directives-->
+    <script type="text/javascript" src="assets/js/directives/numbers.js"></script>
+    <script type="text/javascript" src="assets/js/directives/taFocus.js"></script>
+    <script type="text/javascript" src="assets/js/directives/tabsAtendimento.js"></script>
+    <script type="text/javascript" src="assets/js/directives/atendimentoMesa.js"></script>
+    <script type="text/javascript" src="assets/js/directives/botoesAcao.js"></script>
+    <script type="text/javascript" src="assets/js/directives/atendimentoMesaComanda.js"></script>
+    <script type="text/javascript" src="assets/js/directives/atendimentoComanda.js"></script>
+    <script type="text/javascript" src="assets/js/directives/numericKeyboard.js"></script>
+    <script type="text/javascript" src="assets/js/directives/numericKeyboardInput.js"></script>
+    <script type="text/javascript" src="assets/js/directives/atendimentoMtDirective.js"></script>
+    <script type="text/javascript" src="assets/js/directives/loginDirective.js"></script>
+    <!--services-->
+    <script type="text/javascript" src="assets/js/services/produtos.js"></script>
+    <script type="text/javascript" src="assets/js/services/toast.js"></script>
+    <script type="text/javascript" src="assets/js/services/autenticacao.js"></script>
+    <script type="text/javascript" src="assets/js/services/ws.js"></script>
+    <script type="text/javascript" src="assets/js/services/pedido.js"></script>
+    <script type="text/javascript" src="assets/js/services/favoritos.js"></script>
+    <script type="text/javascript" src="assets/js/services/funcoes.js"></script>
+    <script type="text/javascript" src="assets/js/services/configuracao.js"></script>
+    <script type="text/javascript" src="assets/js/services/log.js"></script>
+    <script type="text/javascript" src="assets/js/services/info.js"></script>
+    <script type="text/javascript" src="assets/js/services/atendimento.js"></script>
+    <script type="text/javascript" src="assets/js/services/balanca/seletorBalanca.js"></script>
+    <script type="text/javascript" src="assets/js/services/numeric-keyboard.js"></script>
+    <script type="text/javascript" src="assets/js/services/atendimentoMtService.js"></script>
+    <script type="text/javascript" src="assets/js/services/operador.js"></script>
+    <script type="text/javascript" src="assets/js/services/produtoPizza.js"></script>
+    <!--filters-->
+    <script type="text/javascript" src="assets/js/filters/filterAdicionais.js"></script>
+    <script type="text/javascript" src="assets/js/filters/filterFavoritos.js"></script>
+    <script type="text/javascript" src="assets/js/filters/filterProdutosAdicionados.js"></script>
+    <script type="text/javascript" src="assets/js/filters/filterPermanencia.js"></script>
+    <script type="text/javascript" src="assets/js/filters/filterMaxValFracionado.js"></script>
+    <script type="text/javascript" src="assets/js/filters/filterItensLog.js"></script>
+</body>
+</html>

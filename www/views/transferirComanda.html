@@ -1,0 +1,45 @@
+﻿<form class="form" style="margin:20px 10px">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" ng-init="transfCtrl.tab = 'comanda-comanda'">
+                <li ng-class="{'active': transfCtrl.tab=='comanda-comanda'}"><a href="" ng-click="transfCtrl.tab = 'comanda-comanda'">Comanda para <br />Comanda</a></li>
+                <li ng-class="{'active': transfCtrl.tab=='comanda-mesa'}"><a href="" ng-click="transfCtrl.tab = 'comanda-mesa'">Comanda para<br />Mesa</a></li>                
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-if="transfCtrl.tab == 'comanda-mesa'">
+        <div class="col-md-12">
+            <label>Comanda de Origem:</label>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="transfCtrl.comandaOrigem" disabled autocomplete="off" />
+            </div>
+            <label>Mesa de Destino:</label>
+            <div class="form-group">
+                <input id="comandaDestino" type="tel" class="form-control" ng-model="transfCtrl.mesaDestino"  autocomplete="off" />
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfCtrl.autenticar(transfCtrl.mesaDestino)">Transferir</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="transfCtrl.tab == 'comanda-comanda'">
+        <div class="col-md-12">
+            <label>Comanda de Origem:</label>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="transfCtrl.comandaOrigem" disabled autocomplete="off" />
+            </div>
+            <label>Comanda de Destino:</label>
+            <div class="form-group">
+                <div ng-class="{'input-group' : !transfCtrl.config.localConfig.utilizaLeitorUsb}">
+                    <span class="input-group-btn" ng-if="!transfCtrl.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info" type="button" ng-click="transfCtrl.openBarCodeScanner($event)"><i class="fa fa-barcode"></i></button>
+                    </span>
+                    <input id="comandaDestino" type="tel" class="form-control" ng-click="transfCtrl.validarLeitor($event)" ng-model="transfCtrl.comandaDestino" ta-focus autocomplete="off" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-right" ng-click="transfCtrl.autenticar(transfCtrl.comandaDestino)">Transferir</button>
+            </div>
+        </div>
+    </div>
+</form>

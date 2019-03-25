@@ -1,0 +1,17 @@
+<form class="form" style="margin:10px 10px 50px 10px;" ng-cloak>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Mesa</label>
+                <input id="txtMesa" name="mesa" type="number" class="form-control input-sm numbers" ng-model="atendCtrl.mesa" disabled  autocomplete="off" />
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <label>Pessoas</label>
+                <input id="nrPessoas" type="number" class="form-control input-sm numbers" ng-model="atendCtrl.pessoas" ng-enabled="atendCtrl.mesaLocalizada" autocomplete="off">
+            </div>
+        </div>
+    </div>
+    <tabs-atendimento></tabs-atendimento>
+</form>
+
+ 

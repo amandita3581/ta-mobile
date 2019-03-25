@@ -1,0 +1,49 @@
+﻿<div class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Seleção de adicionais</h4>
+            </div>
+            <div class="modal-body" style="overflow:auto; height: 70vh;">
+                <table style="width:100%;margin-top:20px;font-size:0.9em;">
+                    <thead>
+                        <tr>
+                            <th>Desc.</th>
+                            <th>Com</th>
+                            <th>Sem</th>
+                            <th>NA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in produto.adicionais">
+                            <td>{{item.stProdutoAbreviado}}</td>
+                            <td class="ta-table-adicionais-radio">
+                                <div class="radio radio-primary">
+                                    <input type="radio" ng-value="0" ng-model="item.flAdicionado" aria-label="com" id="com{{$index}}">
+                                    <label for="com{{$index}}"></label>
+                                </div>
+                            </td>
+                            <td class="ta-table-adicionais-radio">
+                                <div class="radio radio-primary">
+                                    <input type="radio" ng-value="1" ng-model="item.flAdicionado" aria-label="sem" id="sem{{$index}}">
+                                    <label for="sem{{$index}}"></label>
+                                </div>
+                            </td>
+                            <td class="ta-table-adicionais-radio">
+                                <div class="radio radio-primary">
+                                    <input type="radio" ng-value="2" ng-model="item.flAdicionado" aria-label="na" id="na{{$index}}">
+                                    <label for="na{{$index}}"></label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

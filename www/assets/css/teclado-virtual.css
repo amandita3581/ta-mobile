@@ -1,0 +1,93 @@
+﻿.teclado-virtual {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+    .teclado-virtual .row div {
+        line-height: 9.5vh;
+        border: solid white 2px;
+        background-color: #333;
+        color: #fff;
+        font-size: 1.9em;
+        font-weight: bold;
+    }
+
+        .teclado-virtual .row div:active {
+            background-color: #555;
+        }
+
+        .teclado-virtual .row div.button-red {
+            background-color: #f00;
+        }
+
+            .teclado-virtual .row div.button-red:active {
+                background-color: #f53;
+            }
+
+        .teclado-virtual .row div.button-yellow {
+            background-color: #ff0;
+            color: #333;
+        }
+
+            .teclado-virtual .row div.button-yellow:active {
+                background-color: #ff7;
+            }
+
+        .teclado-virtual .row div.button-blue {
+            background-color: #00f;
+        }
+
+            .teclado-virtual .row div.button-blue:active {
+                background-color: #04f;
+            }
+
+        .teclado-virtual .row div.button-green {
+            background-color: #008000;
+        }
+
+            .teclado-virtual .row div.button-green:active {
+                background-color: #00A000;
+            }
+
+.navbar-bottom {
+    border: none;
+    background-color: white;
+}
+
+    .navbar-bottom .btn-group-bottom {
+        margin: 10px 0;
+    }
+
+.input-teclado-virtual {
+    position: relative;
+    border: solid 1px #333;
+    padding: 1vh;
+    font-size: 3vh;
+    background-color: #eee;
+    color: #333;
+    word-wrap: break-word;
+    max-height: 15vh;
+    min-height: 15vh;
+    margin: 3.5vh 1.5vh 1.5vh 1.5vh;
+}
+.input-teclado-virtual .panel-body{
+    padding:0 !important;
+    min-height: 3vh;
+}
+
+.teclado-virtual-focus {
+    background-color: yellow;
+}
+
+.container-dados-atendimento {
+    border-top: dashed 1px #333;
+    border-bottom: dashed 1px #333;
+    margin: 1.5vh 0;
+    padding: 1.5vh 0;
+}
+
+.panel-detalhes-comanda{
+    background-color:transparent !important;
+    font-size: 2.5vh;
+}
+

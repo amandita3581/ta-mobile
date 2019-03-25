@@ -1,0 +1,19 @@
+﻿<form class="form" style="margin:10px 10px 50px 10px;" ng-cloak>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <label>Comanda</label>
+                <div ng-class="{'input-group' : !atendCtrl.config.localConfig.utilizaLeitorUsb}">
+                    <span class="input-group-btn" ng-if="!atendCtrl.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info input-sm" type="button" ng-click="atendCtrl.openBarCodeScanner($event)"><i class="fa fa-barcode"></i></button>
+                    </span>
+                    <input id="txtComanda" name="comanda" type="tel" class="form-control input-sm" ng-click="atendCtrl.validarLeitor($event)" ng-keypress="atendCtrl.flValidaDv = true; atendCtrl.buscaComandaEnter($event)" ng-model="atendCtrl.comanda" ta-focus inserir-foco="!atendCtrl.comanda && atendCtrl.digitacaoPermitida" autocomplete="off" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary input-sm" type="button" ng-click="atendCtrl.buscaComanda()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <tabs-atendimento></tabs-atendimento>
+</form>

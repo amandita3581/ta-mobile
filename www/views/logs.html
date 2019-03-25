@@ -1,0 +1,28 @@
+<form style="margin:10px 10px 120px 10px;">
+	<p style="text-align:center;" name="inicio">
+		<button type="button" class="btn btn-primary" ng-click="logsCtrl.limparLogs()">Limpar Logs</button>
+		<a href="#/" class="btn btn-primary">Voltar</a>
+		<button type="button" class="btn btn-primary" ng-click="logsCtrl.exportar()">Exportar</button>
+	</p>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div class="panel panel-default" ng-repeat="item in logsCtrl.logs | orderBy:'-data' track by $index  " id="{{$index}}">
+			<div class="panel-heading" role="tab" id="tab-{{$index}}">
+				<h4 class="panel-title">
+					<a class="collapsed" 
+					   data-toggle="collapse" 
+					   data-parent="#accordion" 
+					   data-target="#collapse-{{$index}}">
+						{{item.data}}
+					</a>
+				</h4>
+			
+			</div>
+			<div id="collapse-{{$index}}" class="panel-collapse collapse">
+				<div class="panel-body">
+					<p><b>Requisição: {{item.text.request.metodo}}</b> <br />{{item.text.request.request}}</p>
+					<p><b>Resposta:</b> <br />{{item.text.response.response}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

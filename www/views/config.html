@@ -1,0 +1,70 @@
+<form name="formConfig" novalidate  style="margin:10px 10px">
+    <h4>Tipo de Atendimento:</h4>
+    <div class="form-group">
+		<div class="radio radio-primary">
+			 <input type="radio" name="tipoAtendimento" id="comanda" value="comanda" aria-label="Atendimento por comanda" ng-model="configCtrl.config.tipoAtendimento" checked="checked">
+			<label for="comanda">Comanda</label>
+		</div>
+    </div>
+    <div class="form-group">
+		<div class="radio radio-primary">
+			<input type="radio" name="tipoAtendimento" id="mesa" value="mesa" aria-label="Atendimento por mesa" ng-model="configCtrl.config.tipoAtendimento">
+			<label for="mesa">Mesa</label>
+		</div>
+    </div>
+	<h4>Qtd. De itens carregados na pesquisa:</h4>
+    <div class="form-group">
+       <select ng-model="configCtrl.config.itensLista" class="form-control">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+       </select> 
+    </div>
+
+    <h4>Modo de pesquisa:</h4>
+    <div class="form-group">
+       <select ng-model="configCtrl.config.modoPesquisa" class="form-control">
+          <option value="1" selected>Inicia com o termo</option>
+          <option value="0">Contém o termo</option>
+       </select> 
+    </div>
+    <h4 ng-if="configCtrl.microterminal.flLeitor">Utiliza Leitor USB?</h4>
+    <div class="form-group" ng-if="configCtrl.microterminal.flLeitor">
+        <select ng-model="configCtrl.config.utilizaLeitorUsb" class="form-control">
+            <option value="1">Sim</option>
+            <option value="0">Não</option>
+        </select>
+    </div>
+    <h4>Ativar modo Microterminal</h4>
+    <div class="form-group">
+        <select ng-model="configCtrl.config.ativarModoTablet" class="form-control">
+            <option value="1">Sim</option>
+            <option value="0">Não</option>
+        </select>
+    </div>
+	<h4>Utiliza Range de Mesas?</h4>
+    <div class="form-group">
+       <select ng-model="configCtrl.config.utilizaRangeMesa" class="form-control">
+          <option value="1" selected>Sim</option>
+          <option value="0">Não</option>
+       </select><br />
+	   <div class="rangeContainer" ng-show="configCtrl.config.utilizaRangeMesa == 1">
+			<span style="float:left">{{configCtrl.config.MesaInicial}}</span>
+			<input id="rangeMesa" ng-model="configCtrl.config.rangeMesa" type="text" class="rangeMesa" autocomplete="off" />
+			<span style="float:right">{{configCtrl.config.MesaFinal}}</span>
+	   </div>
+    </div>
+	<div class="form-group">
+      <div>
+         <button type="button" class="btn btn-danger" ng-click="configCtrl.ResetAppData()">Limpar configurações</button>
+      </div>
+    </div>
+	
+    <div class="form-group">
+      <div style="text-align:right;">
+         <button type="submit" class="btn btn-primary" ng-click="configCtrl.SaveConfig()" ng-disabled="!configCtrl.config.tipoAtendimento">Salvar</button>
+      </div>
+    </div>
+</form>

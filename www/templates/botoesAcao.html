@@ -1,0 +1,7 @@
+﻿<div class="acoes" ng-show="tipoAtendimento == 'mesa-comanda' || mesaLocalizada">
+    <button class="btn btn-danger" type="button" ng-if="mostraBotaoExcluir" ng-click="excluirItens()"><i class="zmdi zmdi-delete zmdi-hc-lg"></i></button>
+    <button class="btn btn-success" type="button" ng-disabled="desabilitar" ng-click="SalvarPedido(true, true)" ng-if="tipoAtendimento == 'mesa-comanda'"><i class="glyphicon glyphicon-floppy-save"></i></button>
+    <button class="btn btn-primary" type="button" ng-disabled="desabilitar" ng-click="SalvarPedido(true, false)" ng-if="temNovosItens"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+    <button class="btn btn-primary" type="button" ng-if="mostraBotaoReimpressao" ng-click="reimprimirPedido()"><i class="zmdi zmdi-print zmdi-hc-lg"></i></button>
+    <button class="btn btn-primary" type="button" ng-click="liberarAtendimento(true)"><i class="zmdi zmdi-block zmdi-hc-lg"></i></button>
+</div>

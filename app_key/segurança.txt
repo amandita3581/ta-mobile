@@ -1,0 +1,5 @@
+Estes dados são utilizados para gerar um apk em modo release:
+
+Alias: TerminalDeAtendimento
+
+senha: 01@sqginfo#@01

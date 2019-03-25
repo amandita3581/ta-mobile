@@ -1,0 +1,11 @@
+{
+     "android": {
+         "release": {
+             "keystore": "app_key/TerminalAtendimento.keystore",
+             "storePassword": "01@sqginfo#@01",
+             "alias": "TerminalDeAtendimento",
+             "password" : "01@sqginfo#@01",
+             "keystoreType": "jks"
+         }
+     }
+ }

@@ -1,0 +1,50 @@
+<form class="container-mesas" style="padding-top:20px;">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-class="{'input-group' : !inicioCtrl.config.localConfig.utilizaLeitorUsb}">
+                    <span class="input-group-btn" ng-if="!inicioCtrl.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info input-sm" type="button" ng-click="inicioCtrl.openBarCodeScanner()"><i class="fa fa-barcode"></i></button>
+                    </span>
+                      <input type="tel" value="" id="txtComanda" class="form-control input-sm" placeholder="Comanda" ng-click="inicioCtrl.validarLeitor($event)" ng-keyup="inicioCtrl.flValidaDv = true" ng-keypress="inicioCtrl.onComandaKeypress($event)" ng-model="inicioCtrl.comanda"  autocomplete="off"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary input-sm" type="button" ng-click="inicioCtrl.selecionarComanda()"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                    </span>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div style="overflow:auto; height: 65vh;">
+        <div class="icon-mesa" ng-click="inicioCtrl.selecionaMesa(mesa)" ng-repeat="mesa in inicioCtrl.mesas" ng-class="{'mesa-livre': !mesa.FlagBloqueada, 'mesa-ocupada' : mesa.FlagBloqueada, 'mesa-fechandoConta' : mesa.FlagBloqueadaLancamento }">
+            <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="104.83" height="104.83" viewBox="0 0 371.43 371.43" id="svg2" version="1.1" inkscape:version="0.91" sodipodi:docname="icon-mesa.svg">
+                <defs id="defs4" />
+                <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:zoom="0.35" inkscape:cx="-840.71" inkscape:cy="-151.43" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1366" inkscape:window-height="715" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" />
+                <metadata id="metadata7">
+                    <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>
+                                image/svg+xml
+                            </dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                        </cc:Work>
+                    </rdf:RDF>
+                </metadata>
+                <g class="image-mesa" inkscape:label="Camada 1" inkscape:groupmode="layer" id="layer1" transform="translate(-11.428566,-9.5050964)">
+                    <path d="M62.15 44.57A15.67 15.67 0 0 0 46.49 60.23l0 269.98a15.67 15.67 0 0 0 15.67 15.66l269.98 0a15.67 15.67 0 0 0 15.66-15.66l0-269.98A15.67 15.67 0 0 0 332.13 44.57l-269.98 0zm15.66 31.33 238.65 0 0 238.65-238.65 0 0-238.65z" id="rect4136" inkscape:connector-curvature="0" style="baseline-shift:baseline;block-progression:tb;clip-rule:nonzero;color-interpolation-filters:linearRGB;color-interpolation:sRGB;color-rendering:auto;color:#000000;direction:ltr;display:inline;enable-background:accumulate;fill-rule:nonzero;fill:#008000;font-family:sans-serif;font-size:medium;image-rendering:auto;isolation:auto;letter-spacing:normal;line-height:normal;mix-blend-mode:normal;overflow:visible;shape-rendering:auto;solid-color:#000000;solid-opacity:1;text-align:start;text-anchor:start;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-decoration:none;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:normal;writing-mode:lr-tb" />
+                    <rect id="rect4138-8" width="22.86" height="128.57" x="9.51" y="-261.43" transform="matrix(0,1,-1,0,0,0)" fill="#008000" />
+                    <rect id="rect4138-8-5" width="22.86" height="128.57" x="358.08" y="-261.43" transform="matrix(0,1,-1,0,0,0)" fill="#008000" />
+                    <rect id="rect4138-8-6" width="22.86" height="128.57" x="-382.86" y="-259.51" transform="scale(-1,-1)" fill="#008000" />
+                    <rect id="rect4138-8-5-6" width="22.86" height="128.57" x="-34.29" y="-259.51" transform="scale(-1,-1)" fill="#008000" />
+                    <path d="m65.57 194.36 0-132.86 131.43 0 131.43 0 0 132.86 0 132.86-131.43 0-131.43 0 0-132.86z" id="path4156" inkscape:connector-curvature="0" fill="#008000" />
+                </g>
+            </svg>
+            <div>{{mesa.NumeroMesa}}</div>
+        </div>
+    </div>
+</form>
+
+<div class="legenda-container" style="margin: 20px;" ng-show="inicioCtrl.mesas.length > 0" ng-cloak>
+	<p><span></span>Livre</p>
+	<p><span></span>Ocupada</p>
+	<p><span></span>Fechando Conta</p>
+</div>

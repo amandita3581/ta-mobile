@@ -1,0 +1,83 @@
+﻿<form class="form-conta" style="margin:10px 10px 120px 10px;" ng-cloak>
+    <div class="form-group">
+        <h4>{{contaCtrl.stNomeFantasia}}</h4>
+        <h4>FECHAMENTO DA {{contaCtrl.tipoAtendimento == 'comanda' ? 'COMANDA' : 'MESA'}}: {{contaCtrl.tipoAtendimento == 'comanda' ? contaCtrl.comanda : contaCtrl.mesa }}</h4>
+    </div>
+    <div ng-repeat="com in contaCtrl.comandas  | orderBy:com.idComanda" class="well">
+        <div class="form-group">
+            <h5 ng-if="contaCtrl.tipoAtendimento == 'mesa-comanda'">COMANDA : {{com.idComanda}}</h5>
+            <h5>TERMINAL: {{contaCtrl.terminal}}</h5>
+        </div>
+        <div class="form-group">
+            {{ contaCtrl.date | date:'dd/MM/yyyy HH:mm' }}<br>
+            ATENDENTE: {{contaCtrl.operador.stApelido}}
+
+        </div>
+        <div class="form-group">
+            <table>
+                <tbody>
+                    <tr ng-repeat="item in com.liAtendimentoItem">
+                        <td colspan="3">
+                            <table>
+                                <tr>
+                                    <td>{{item.nrItem}}{{item.flTaxaServico ? '*' : ''}}</td>
+                                    <td>{{(item.flFracionado ? ((item.nrQuantidade / 1000) | number:3): item.nrQuantidade) + ' ' + item.stMedida}} X {{item.stProdutoAbreviado}}</td>
+                                    <td class="align-right">{{item.vrTotal | currency}}</td>
+                                </tr>
+                                <tr ng-repeat="fracionado in item.fracionados" class='linha-tabulada'>
+                                    <td></td>
+                                    <td colspan="2" class="linha-tabulada">{{fracionado.stProdutoAbreviado}}</td>
+                                </tr>
+                                <tr ng-repeat="adicional in item.adicionais" ng-if="!adicional.flSem">
+                                    <td></td>
+                                    <td class="linha-tabulada">COM&nbsp;{{adicional.stProdutoAbreviado}}</td>
+									<td class="align-right">{{adicional.vrTotal | currency}}</td>
+                                </tr>
+                            </table>
+                       <td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">SUBTOTAL: </td>
+                        <td class="align-right">{{contaCtrl.getTotalComanda(com.liAtendimentoItem) | currency}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td>TEMPO DE PERMANENCIA:</td>
+                    <td class="align-right">{{[com.dtFirstDate, com.dtAtual] | filterPermanencia}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div class="form-group">
+         <table>
+             <tr>
+                <td>SUBTOTAL</td>
+                <td class="align-right">{{contaCtrl.subTotal| currency}}</td>
+            </tr>
+            <tr ng-if="contaCtrl.configuracao.flExibirTaxaServico && contaCtrl.microterminal.fltaxaServico">
+                <td>SERVIÇO</td>
+                <td class="align-right">{{contaCtrl.getTaxaServicoTotal(contaCtrl.comandas) | currency}}</td>
+            </tr>
+            <tr>
+                <td>TOTAL GERAL</td>
+                <td class="align-right">{{contaCtrl.getTotalGeral(contaCtrl.comandas) | currency}}</td>
+            </tr>
+            <tr ng-if="contaCtrl.tipoAtendimento != 'comanda'">
+                <td>VALOR POR PESSOA({{contaCtrl.pessoas}})</td>
+                <td class="align-right">{{contaCtrl.valPessoa | currency}}</td>
+            </tr>
+         </table>
+     </div>
+</form>
+
+
+ <div class="acoes">
+    <button class="btn btn-success" type="button" ng-click="contaCtrl.emitirConta();"><i class="glyphicon glyphicon-ok"></i></button>
+</div>

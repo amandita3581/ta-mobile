@@ -1,0 +1,192 @@
+﻿<!-- Tab s-->
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li ng-class="{'active': atendMtCtrl.tab=='lancamento'}"><a href="" ng-click="atendMtCtrl.tab = 'lancamento'">Lancamento</a></li>
+            <li ng-class="{'active': atendMtCtrl.tab=='adicionados'}" ng-if="atendMtCtrl.passoAtendimento == atendMtCtrl.atendimentoMtService.passoAtendimento.itens"><a href="" ng-click="atendMtCtrl.tab = 'adicionados'">Adicionados</a></li>
+            <li ng-class="{'active': atendMtCtrl.tab=='consumidos'}" ng-if="atendMtCtrl.passoAtendimento == atendMtCtrl.atendimentoMtService.passoAtendimento.itens"><a href="" ng-click="atendMtCtrl.tab = 'consumidos'">Consumidos</a></li>
+        </ul>
+    </div>
+</div>
+<!-- Fim Tabs -->
+<!-- Tab Lançamento-->
+<div ng-if="atendMtCtrl.tab=='lancamento'">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default input-teclado-virtual">
+                <div style="color:rgb(16,108,200)">{{atendMtCtrl.passoAtendimento}}</div>
+                <div class="panel-body" numeric-keyboard-input="" ng-model="atendMtCtrl.valor" ng-bind="atendMtCtrl.valor" id="div-input"></div>
+                <div class="ultimo-produto text-info" ng-if="(atendMtCtrl.passoAtendimento == atendMtCtrl.atendimentoMtService.passoAtendimento.itens) && atendMtCtrl.ultimoProduto">
+                    {{ (atendMtCtrl.ultimoProduto.flFracionado ? atendMtCtrl.formataGramasParaKilo(atendMtCtrl.ultimoProduto.qt) + 'g' : atendMtCtrl.ultimoProduto.qt + ' ' + atendMtCtrl.ultimoProduto.stMedida)}}&nbsp;
+                    {{atendMtCtrl.ultimoProduto.stProdutoAbreviado}}&nbsp;-&nbsp;
+                    {{atendMtCtrl.formataValorTotalItem(atendMtCtrl.ultimoProduto) | currency}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="row" ng-if="atendMtCtrl.comanda.idComanda || atendMtCtrl.comanda.idMesa">
+            <div class="col-xs-12">
+                <div class="panel panel-default panel-detalhes-comanda" style="margin: 0 1.5vh;">
+                    <div class="panel-body bg-warning">
+                        <div><span ng-if="atendMtCtrl.comanda.idMesa">MESA: {{atendMtCtrl.comanda.idMesa}}&nbsp;&nbsp;&nbsp;</span><span ng-if="atendMtCtrl.comanda.idComanda">COMANDA: {{atendMtCtrl.comanda.idComanda}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Adicionados -->
+<div ng-if="atendMtCtrl.tab=='adicionados'">
+    <div class="row row-botao-excluir" ng-show="atendMtCtrl.itens.length > 0">
+        <div class="col-xs-12">
+            <button class="btn btn-danger btn-block" ng-click="atendMtCtrl.excluirItens()" ng-disabled="!atendMtCtrl.temItemAdicionadoSelecionado">Excluir</button>
+        </div>
+    </div>
+    <div class="container-fluid lista-itens-atendimentoMt">
+        <div class="panel panel-default" ng-repeat="item in atendMtCtrl.itens | filterMaxValFracionado">
+            <div class="panel-body" ng-class="{'bg-danger text-muted': item.selecionado}">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row" ng-click="atendMtCtrl.selecionaItemAdicionado(item)">
+                            <div class="col-xs-12">
+                                <span class="prod-desc">{{item.idCodigo}}&nbsp;-&nbsp;{{item.stProdutoAbreviado}}</span>
+                                <i class="zmdi zmdi-pizza zmdi-hc-lg text-danger" ng-if="item.idTipoProduto == 3"></i>
+                                <i ng-if="item.flRequererItemAdicional" class="zmdi zmdi-attachment-alt zmdi-hd-lg"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <div ng-click="atendMtCtrl.selecionaItemAdicionado(item)">
+                                    {{item.vrUnitario | currency}} / {{item.stMedida}}&nbsp;|&nbsp;Total:&nbsp;{{atendMtCtrl.formataValorTotalItem(item) | currency}}
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="atendMtCtrl.sub(item)"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                                        </span>
+                                        <input type="number" class="form-control numbers set-default" placeholder="qt" ng-model="item.qt" ng-class="{decimal: item.flFracionado}" min="0">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" ng-click="atendMtCtrl.add(item)"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                                        </span>
+                                    </div><!-- /input-group -->
+                                </div>
+                            </div>
+                            <div class="col-xs-3" style="text-align:right;">
+                                <i class="zmdi zmdi-plus-square zmdi-hc-3x text-success" ng-click="atendMtCtrl.abrirOpcoes(item)"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div ng-click="atendMtCtrl.selecionaItemAdicionado(item)">
+                                    <div class="form-group" ng-if="item.observacoes">
+                                        <span class="text-primary">OBSERVA&#199;&#213;ES</span>
+                                        <div class="row">
+                                            <div class="col-xs-12">{{item.observacoes}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="(item.adicionais | filterAdicionais).length > 0">
+                                        <span class="text-primary">ADICIONAIS:</span>
+                                        <div class="row" ng-repeat="add in item.adicionais | filterAdicionais">
+                                            <div class="col-xs-9">
+                                                {{add.flAdicionado == 0  ? 'Com' : 'Sem' }}&nbsp;{{add.stProdutoAbreviado}}
+                                            </div>
+                                            <div class="col-xs-2" style="text-align:right;">
+                                                {{add.flAdicionado == 0  ? add.vrUnitario : 0  | currency}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-if="item.fracionados.length > 0">
+                                        <span class="text-primary">FRACIONADOS:</span>
+                                        <div class="row" ng-repeat="frac in item.fracionados">
+                                            <div class="col-xs-12">
+                                                {{frac.stProdutoAbreviado}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Consumidos-->
+<div ng-if="atendMtCtrl.tab=='consumidos'">
+    <div class="row row-botao-excluir" ng-show="atendMtCtrl.itensConsumidos.length > 0">
+        <div class="col-xs-12">
+            <button class="btn btn-danger btn-block" ng-click="atendMtCtrl.excluirItens();" ng-disabled="!atendMtCtrl.temItemConsumidoSelecionado" ng-show="atendMtCtrl.itensConsumidos.length > 0">Excluir</button>
+        </div>
+    </div>
+    <div class="container-fluid lista-itens-atendimentoMt">
+        <div class="row" ng-show="atendMtCtrl.itensConsumidos.length > 0" ng-click="atendMtCtrl.selecionarTodos(atendMtCtrl.itensConsumidos)">
+            <div class="col-xs-12">
+                <div class="checkbox checkbox-primary">
+                    <input id="chkSelecionarTodos" type="checkbox" ng-model="atendMtCtrl.selecionarTodosParaReimpressao">
+                    <label for="chkSelecionarTodos"> Selecionar todos</label>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default" ng-repeat="item in atendMtCtrl.itensConsumidos" ng-if="item.idComanda" ng-click="atendMtCtrl.selecionaItemConsumido(item)">
+            <div class="panel-body" ng-class="{'bg-danger text-muted': item.selecionado}">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <span class="prod-desc">{{item.idCodigo}}&nbsp;-&nbsp;{{item.stProdutoAbreviado}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <div>
+                                    <span>QUANTIDADE: {{ item.flFracionado ? atendMtCtrl.formataGramasParaKilo(item.nrQuantidade) + 'g' : item.nrQuantidade }}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="text-align: right;">
+                                <span>{{item.vrTotal | currency}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <span>PREÇO: {{item.vrUnitario | currency}} / {{item.stMedida}}</span>
+                                </div>
+                                <div class="form-group" ng-if="item.stIncremento != ''">
+                                    <span class="text-primary">OBSERVA&#199;&#213;ES</span>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            {{item.stIncremento}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="item.adicionais.length > 0">
+                                    <span class="text-primary">ADICIONAIS:</span>
+                                    <div class="row" ng-repeat="add in item.adicionais | filterAdicionais">
+                                        <div class="col-xs-9">
+                                            {{add.flSem ? 'Sem' : 'Com' }}&nbsp;{{add.stProdutoAbreviado}}
+                                        </div>
+                                        <div class="col-xs-2" style="text-align:right;">
+                                            {{add.vrTotal | currency}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="item.fracionados.length > 0">
+                                    <span class="text-primary">FRACIONADOS:</span>
+                                    <div class="row" ng-repeat="frac in item.fracionados">
+                                        <div class="col-xs-12">
+                                            {{frac.stProdutoAbreviado}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

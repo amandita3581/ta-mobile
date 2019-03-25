@@ -1,0 +1,110 @@
+<form class="form" style="margin:35px 10px 120px 10px;">
+    <div class="form-group">
+        <div class="row padding-sm">
+            <div class="col-xs-12">
+                <div class="input-group">
+                    <span class="input-group-btn" ng-if="!buscaCtrl.config.localConfig.utilizaLeitorUsb">
+                        <button class="btn btn-info input-sm" type="button" ng-click="buscaCtrl.openBarCodeScanner($event)"><i class="fa fa-barcode"></i></button>
+                    </span>
+                    <input id="buscaProdutoTexto" type="text" class="form-control input-sm" ng-keyup="buscaCtrl.buscaPorTexto($event)" ng-model="buscaCtrl.termoString" placeholder="Descrição..." ta-focus inserir-foco="false" autocomplete="off" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary input-sm" type="button" ng-click="buscaCtrl.buscaPorTexto($event)"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row padding-sm">
+            <div class="col-xs-6">
+                <select placeholder="Categoria" class="form-control input-sm" ng-options="item.idCategoria as item.stCategoria for item in buscaCtrl.categorias | orderBy:'stCategoria'" ng-change="buscaCtrl.ObterSubCategorias()" ng-model="buscaCtrl.categoria">
+                    <option value="">Categoria</option>
+                    <!--<option ng-repeat="item in buscaCtrl.categorias" value="{{item.idCategoria}}" >{{item.stCategoria}}</option>-->
+                </select>
+            </div>
+            <div class="col-xs-6">
+                <select placeholder="Subcategoria" ng-disabled="buscaCtrl.subCategorias.length < 1" class="form-control input-sm" ng-options="item.idSubCategoria as item.stSubCategoria for item in buscaCtrl.subCategorias | orderBy:'stSubCategoria'" ng-model="buscaCtrl.subCategoria" ng-change="buscaCtrl.selecionarSubcategoria()">
+                    <option value="">Subcategoria</option>
+                    <!--<option ng-repeat="item in buscaCtrl.subCategorias" value="{{item.idSubCategoria}}">{{item.stSubCategoria}}</option>-->
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div layout="row" ng-show="!buscaCtrl.isLoading && buscaCtrl.produtos.length > 0" style="overflow:auto; height: 57vh;">
+            <table class="ta-table">
+                <tbody>
+                    <tr ng-repeat="item in buscaCtrl.produtos">
+                        <td>
+                            <div class="price-container" ng-click="buscaCtrl.toggleProduto(item)">
+                                <div class="price" ng-class="{'fliped':item.adicionado}">
+                                    <div class="front" style="background-color:rgb(63,81,181);">{{buscaCtrl.formataValorTotalItem(item) | currency}}</div>
+                                    <div class="back" style="background-color:green;">{{buscaCtrl.formataValorTotalItem(item) | currency}}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="prod-desc">
+                                {{item.stProdutoAbreviado}} &nbsp;
+                                <i class="zmdi zmdi-pizza zmdi-hc-lg text-danger" ng-if="item.idTipoProduto == 3"></i> &nbsp;
+                                <i ng-if="item.flRequererItemAdicional" class="zmdi zmdi-attachment-alt zmdi-hc-lg text-primary"></i>
+                            </p>
+                            <p>{{item.idCodigo}}</p>
+                            <p>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="buscaCtrl.sub(item)"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                                    </span>
+                                    <input type="number" class="form-control numbers set-default" placeholder="qt" ng-model="item.qt" ng-class="{decimal: item.flFracionado}" min="0" autocomplete="off" >
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="buscaCtrl.add(item)"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                                    </span>&nbsp;
+
+
+                                </div><!-- /input-group -->
+                                <span>
+                                    {{(item.vrPizza || item.vrUnitario) | currency}} / {{item.stMedida}}
+                                </span>
+                            </p>
+                            <p>{{item.observacoes}}</p>
+                        </td>
+                        <td style="text-align:right;">
+                            <i class="zmdi zmdi-plus-square zmdi-hc-4x text-success" ng-click="buscaCtrl.abrirOpcoes(item)"></i>
+                            <i ng-class="{ 'zmdi zmdi-hc-4x' : true, 'zmdi-star text-yellow' : item.favorito, 'zmdi-star-outline text-primary' : !item.favorito }" ng-click="buscaCtrl.adicionarFavorito(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="acoes" ng-if="buscaCtrl.produtos.length > 0">
+    <button class="btn btn-primary" type="button" ng-click="buscaCtrl.limpar()"><i class="zmdi zmdi-block zmdi-hc-lg"></i></button>
+</div>
+<div id="modalInformarValor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Informe o valor do produto">
+    <div class="modal-dialog modal-sm" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Valor do Produto</h4>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="sizing-addon3">$</span>
+                            <input type="number" class="form-control" placeholder="Valor do Produto" id="vrProduto" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:right;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" id="addValor" class="btn btn-primary">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

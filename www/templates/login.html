@@ -1,0 +1,27 @@
+﻿<!--Panel do usuario que acessa o sistema na inicialização-->
+<div class="container-fluid" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">TERMINAL DE ATENDIMENTO - LOGIN</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="input-group">                          
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="tel" class="form-control input-password" id="txtOperador" placeholder="Operador" ng-model="loginCtrl.operador" ta-focus inserir-foco="true" autocomplete="off"/>
+                        </div>
+                     </div>
+                    <div class="form-group">
+                        <div class="input-group">                           
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="tel" class="form-control input-password" id="txtSenha" placeholder="Senha" ng-model="loginCtrl.senha" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" ng-click="loginCtrl.Entrar()">Entrar&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

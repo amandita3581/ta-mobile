@@ -1,0 +1,50 @@
+﻿<form class="form" style="margin:20px 10px">
+    <div class="row" ng-if="favCtrl.temItens">
+        <div class="col-md-12">
+            <input type="text" ng-model="favCtrl.filter" placeholder="Digite para pesquisar nos seus favoritos..." class="form-control" />
+        </div>
+    </div>
+    <div class="row" ng-if="favCtrl.temItens" style="height: 76vh;overflow: auto;margin-top: 10px;">
+        <div class="col-md-12">
+            <table class="ta-table">
+                <tbody>
+                    <tr ng-repeat="item in favCtrl.itens | filter : favCtrl.filter" ng-init="item.qt = 1">
+                        <td>
+                            <div class="price-container" ng-click="favCtrl.toggleProduto(item)">
+                                <div class="price" ng-class="{'fliped':item.adicionado}">
+                                    <div class="front" style="background-color:rgb(63,81,181);">{{favCtrl.formataValorTotalItem(item) | currency}}</div>
+                                    <div class="back" style="background-color:green;"><i class="zmdi zmdi-check zmdi-hc-3x"></i></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="prod-desc">
+                                {{item.stProdutoAbreviado}} <i class="zmdi zmdi-pizza zmdi-hc-lg text-danger" ng-if="item.idTipoProduto == 3"></i>
+                                <i ng-if="item.flRequererItemAdicional" class="zmdi zmdi-attachment-alt zmdi-hd-lg"></i>
+                            </p>
+                            <p>{{item.idCodigo}}</p>
+                            <p>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="favCtrl.sub(item)"><i class="glyphicon glyphicon-chevron-down"></i></button>
+                                    </span>
+                                    <input type="number" class="form-control numbers set-default" placeholder="qt" ng-model="item.qt" ng-class="{decimal: item.flFracionado}" min="0" autocomplete="off">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" ng-click="favCtrl.add(item)"><i class="glyphicon glyphicon-chevron-up"></i></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                                <span>
+                                    {{item.vrUnitario | currency}} / {{item.stMedida}}
+                                </span>
+                            </p>
+                        </td>
+                        <td style="text-align:right;">
+                            <i class="zmdi zmdi-delete zmdi-hc-4x text-danger" ng-click="favCtrl.removerFavorito(item)" style="line-height:50px;"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h5 ng-show="!favCtrl.temItens"> Você não possui favoritos cadastrados.</h5>
+</form>
