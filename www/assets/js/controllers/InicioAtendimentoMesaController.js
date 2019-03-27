@@ -39,8 +39,8 @@ function InicioAtendimentoMesaController($scope, $location, ws, toast, pedido, $
 		{
 			$location.url('/atendimento/NumeroMesa/' + mesa.NumeroMesa);
 		}
-	};
-
+    };
+    
 	vm.selecionarComanda = function () {
         ObterMesaComanda();
 	};
@@ -131,8 +131,11 @@ function InicioAtendimentoMesaController($scope, $location, ws, toast, pedido, $
             if (!$rootScope.onlineState)
                 return;
         }
+        // obtem as mesas
         ws.ObterListaMesa().then(
             function (data) {
+                $rootScope.isLoading = true;
+
                 var json = angular.fromJson($(data).find('ObterListaMesaResult').text());
                 var arr = _.map(json, function (item) {
                     return {
@@ -151,6 +154,7 @@ function InicioAtendimentoMesaController($scope, $location, ws, toast, pedido, $
                         $scope.$apply();
                     });
                 }
+                $rootScope.isLoading = false;
             },
             function (error) {
             
@@ -162,7 +166,7 @@ function InicioAtendimentoMesaController($scope, $location, ws, toast, pedido, $
 	ObterListaMesa();
 
     //inicia a atualização continua de mesas
-	var intervalObterMesa = $interval(ObterListaMesa, 1000);
+	var intervalObterMesa = $interval(ObterListaMesa, (10 * 1000));
 
 	if ($routeParams.retornoComanda) {
         config.tipoAtendimento = atendimento.getTipoAtendimentoOriginal();

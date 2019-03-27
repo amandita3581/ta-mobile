@@ -1,0 +1,58 @@
+{
+  "_from": "samurodrigo-cordova-plugin-devicereport@0.0.1",
+  "_id": "samurodrigo-cordova-plugin-devicereport@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-bnedlDVNcv3O05+5Cv6qGdEJ3vc=",
+  "_location": "/samurodrigo-cordova-plugin-devicereport",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "samurodrigo-cordova-plugin-devicereport@0.0.1",
+    "name": "samurodrigo-cordova-plugin-devicereport",
+    "escapedName": "samurodrigo-cordova-plugin-devicereport",
+    "rawSpec": "0.0.1",
+    "saveSpec": null,
+    "fetchSpec": "0.0.1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/samurodrigo-cordova-plugin-devicereport/-/samurodrigo-cordova-plugin-devicereport-0.0.1.tgz",
+  "_shasum": "6e779d94354d72fdced39fb90afeaa19d109def7",
+  "_spec": "samurodrigo-cordova-plugin-devicereport@0.0.1",
+  "_where": "D:\\www\\TA\\branches\\release",
+  "author": {
+    "name": "samurodrigo"
+  },
+  "bugs": {
+    "url": "https://github.com/samurodrigo/samurodrigo-cordova-plugin-devicereport/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Cordova plugin to obtain device info (cpuabi, cpuabi2, architecture and cpu summary from file \"/proc/cpuinfo\")",
+  "homepage": "https://github.com/samurodrigo/samurodrigo-cordova-plugin-devicereport#readme",
+  "keywords": [
+    "device",
+    "report",
+    "device-report",
+    "info",
+    "cpu-info",
+    "cpu",
+    "cpuabi",
+    "cpuabi2",
+    "abi"
+  ],
+  "license": "MIT",
+  "main": "www/devicereport.js",
+  "name": "samurodrigo-cordova-plugin-devicereport",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samurodrigo/samurodrigo-cordova-plugin-devicereport.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}

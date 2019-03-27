@@ -1,0 +1,64 @@
+{
+  "_from": "cordova-plugin-fullscreen@1.1.0",
+  "_id": "cordova-plugin-fullscreen@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-+sclozIAQFgtmisqAF4Yrt0gC44=",
+  "_location": "/cordova-plugin-fullscreen",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-fullscreen@1.1.0",
+    "name": "cordova-plugin-fullscreen",
+    "escapedName": "cordova-plugin-fullscreen",
+    "rawSpec": "1.1.0",
+    "saveSpec": null,
+    "fetchSpec": "1.1.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-fullscreen/-/cordova-plugin-fullscreen-1.1.0.tgz",
+  "_shasum": "fac725a3320040582d9a2b2a005e18aedd200b8e",
+  "_spec": "cordova-plugin-fullscreen@1.1.0",
+  "_where": "D:\\www\\TA\\branches\\release",
+  "author": {
+    "name": "Neil Rackett"
+  },
+  "bugs": {
+    "url": "https://github.com/mesmotronic/cordova-fullscreen-plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-fullscreen",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Plugin for Cordova (or PhoneGap) 3.0+ to enable true full screen on Android devices using lean and immersive modes",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/mesmotronic/cordova-fullscreen-plugin#readme",
+  "keywords": [
+    "cordova",
+    "android",
+    "fullscreen",
+    "lean",
+    "immersive",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "BSD",
+  "name": "cordova-plugin-fullscreen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesmotronic/cordova-fullscreen-plugin.git"
+  },
+  "version": "1.1.0"
+}

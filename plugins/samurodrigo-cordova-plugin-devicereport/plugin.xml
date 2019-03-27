@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+            id="samurodrigo-cordova-plugin-devicereport" version="0.0.1">
+        <name>Device Report</name>
+        <description>Cordova Device Report Plugin</description>
+        <license>Apache 2.0</license>
+        <keywords>cordova,device,report,device-report,devicereport</keywords>
+        
+        <platform name="android">
+			<config-file target="res/xml/config.xml" parent="/*">
+				<feature name="DeviceReport" >
+					<param name="android-package" value="com.samurodrigo.cordova.devicereport.DeviceReport"/>
+					<param name="onload" value="true" />
+				</feature>
+			</config-file>
+
+			<source-file src="src/android/DeviceReport.java" target-dir="src/com/samurodrigo/cordova/devicereport" />
+
+			<js-module src="www/devicereport.js" name="devicereport">
+				<clobbers target="devicereport" />
+			</js-module>
+		</platform>
+    </plugin>

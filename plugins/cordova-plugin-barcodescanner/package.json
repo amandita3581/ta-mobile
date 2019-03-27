@@ -1,0 +1,61 @@
+{
+  "_from": "cordova-plugin-barcodescanner@0.7.0",
+  "_id": "cordova-plugin-barcodescanner@0.7.0",
+  "_inBundle": false,
+  "_integrity": "sha1-Zkny01visUWnJdrOb1A2lHb3aBQ=",
+  "_location": "/cordova-plugin-barcodescanner",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-barcodescanner@0.7.0",
+    "name": "cordova-plugin-barcodescanner",
+    "escapedName": "cordova-plugin-barcodescanner",
+    "rawSpec": "0.7.0",
+    "saveSpec": null,
+    "fetchSpec": "0.7.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-barcodescanner/-/cordova-plugin-barcodescanner-0.7.0.tgz",
+  "_shasum": "6649f2d35be2b145a725dace6f50369476f76814",
+  "_spec": "cordova-plugin-barcodescanner@0.7.0",
+  "_where": "D:\\www\\TA\\branches\\release",
+  "author": {
+    "name": "Martin Reinhardt"
+  },
+  "bugs": {
+    "url": "https://github.com/hypery2k/cordova-barcodescanner-plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-barcodescanner",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8",
+      "windows8"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Barcode Scanner Plugin",
+  "homepage": "https://github.com/hypery2k/cordova-barcodescanner-plugin#readme",
+  "keywords": [
+    "cordova",
+    "battery",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8",
+    "cordova-windows8"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-barcodescanner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypery2k/cordova-barcodescanner-plugin.git"
+  },
+  "version": "0.7.0"
+}

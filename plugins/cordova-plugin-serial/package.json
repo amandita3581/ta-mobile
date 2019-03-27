@@ -1,0 +1,55 @@
+{
+  "_from": "cordova-plugin-serial@0.0.3",
+  "_id": "cordova-plugin-serial@0.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-ns210i1l220+wUDF+9uHd90rFyQ=",
+  "_location": "/cordova-plugin-serial",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-serial@0.0.3",
+    "name": "cordova-plugin-serial",
+    "escapedName": "cordova-plugin-serial",
+    "rawSpec": "0.0.3",
+    "saveSpec": null,
+    "fetchSpec": "0.0.3"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-serial/-/cordova-plugin-serial-0.0.3.tgz",
+  "_shasum": "9ecdb5d22d65db6d3ec140c5fbdb8777dd2b1724",
+  "_spec": "cordova-plugin-serial@0.0.3",
+  "_where": "D:\\www\\TA\\branches\\release",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/randynwalsh/cordovarduino/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-serial",
+    "platforms": [
+      "android",
+      "ubuntu"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to communicate with the android USB serial port",
+  "homepage": "https://github.com/randynwalsh/cordovarduino#readme",
+  "keywords": [
+    "serial",
+    "arduino",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ubuntu"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-serial",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randynwalsh/cordovarduino.git"
+  },
+  "version": "0.0.3"
+}

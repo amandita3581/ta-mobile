@@ -1,0 +1,1 @@
+# samurodrigo-cordova-plugin-devicereport

@@ -98,12 +98,3 @@ $(function(){
 			$rootScope.modalAberta = true;
     });
 });
-
-
-
-
-
-
-
-
-

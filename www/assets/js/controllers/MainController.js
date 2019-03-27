@@ -252,15 +252,16 @@ function MainController($scope,$location,auth,config,ws,$rootScope,produtos,toas
 	
 	//Verifica se o aparelho perdeu a conexão
 	document.addEventListener("deviceready", function () {
-		var isOnline = $cordovaNetwork.isOnline();
-		if(isOnline){
-			if($cordovaNetwork.getNetwork() !== 'wifi'){
-				toast.showCustomToast('O dispositivo não está conectado à rede wifi.');
-				isOnline = false;
-			}
-		}else{
-			toast.showCustomToast('Dispositivo offline.');
-		}
+        var isOnline = $cordovaNetwork.isOnline();
+        // TODO descomentar
+		//if(isOnline){
+		//	if($cordovaNetwork.getNetwork() !== 'wifi'){
+		//		toast.showCustomToast('O dispositivo não está conectado à rede wifi.');
+		//		isOnline = false;
+		//	}
+		//}else{
+		//	toast.showCustomToast('Dispositivo offline.');
+		//}
 		$rootScope.onlineState = isOnline;
 	
 		$rootScope.$on('$cordovaNetwork:online', function(event, networkState){
@@ -303,11 +304,12 @@ function MainController($scope,$location,auth,config,ws,$rootScope,produtos,toas
                     }
 
                     if (versaoWs !== null && !vm.downloadIniciado) {
-                        if (versaoLocal !== versaoWs) {
-                            alert('Versão do aplicativo diferente da versão do web service. Verifique para continuar.');
-                            $(document).trigger('exitApp', [false]);
-                            return;
-                        }
+                        // TODO descomentar
+                        //if (versaoLocal !== versaoWs) {
+                        //    alert('Versão do aplicativo diferente da versão do web service. Verifique para continuar.');
+                        //    $(document).trigger('exitApp', [false]);
+                        //    return;
+                        //}
                     }
                 }
 			},

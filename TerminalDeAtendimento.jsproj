@@ -68,6 +68,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>ddede243-fb39-4cd3-bc53-38861dcfc446</ProjectGuid>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
@@ -113,6 +114,11 @@
     <Content Include="**\**" Exclude="**\platforms\**;**\bin\**;**\bld\**;**\node_modules\**;**\simulation\**;TerminalDeAtendimento.*" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="plugins\com.plugins.shortcut\**" />
+    <Content Remove="plugins\com.virtualartifacts.webintent\**" />
+    <Content Remove="plugins\fr._46cl.focus\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="app_key\LEIAME.txt" />
     <Content Include="app_key\MainActivity.java" />
@@ -144,15 +150,6 @@
     <Content Include="merges\windows\scripts\winstore-jscompat.js" />
     <Content Include="package.json" />
     <Content Include="plugins\android.json" />
-    <Content Include="plugins\com.plugins.shortcut\MIT-LICENSE" />
-    <Content Include="plugins\com.plugins.shortcut\plugin.xml" />
-    <Content Include="plugins\com.plugins.shortcut\README.md" />
-    <Content Include="plugins\com.plugins.shortcut\src\android\ShortcutPlugin.java" />
-    <Content Include="plugins\com.plugins.shortcut\www\ShortcutPlugin.js" />
-    <Content Include="plugins\com.virtualartifacts.webintent\plugin.xml" />
-    <Content Include="plugins\com.virtualartifacts.webintent\README.md" />
-    <Content Include="plugins\com.virtualartifacts.webintent\src\android\WebIntent.java" />
-    <Content Include="plugins\com.virtualartifacts.webintent\www\webintent.js" />
     <Content Include="plugins\cordova-plugin-app-version\CHANGELOG.md" />
     <Content Include="plugins\cordova-plugin-app-version\LICENSE" />
     <Content Include="plugins\cordova-plugin-app-version\package.json" />
@@ -1032,12 +1029,6 @@
     <Content Include="plugins\cordova-plugin-whitelist\src\android\WhitelistPlugin.java" />
     <Content Include="plugins\cordova-plugin-whitelist\whitelist.js" />
     <Content Include="plugins\fetch.json" />
-    <Content Include="plugins\fr._46cl.focus\LICENSE" />
-    <Content Include="plugins\fr._46cl.focus\package.json" />
-    <Content Include="plugins\fr._46cl.focus\plugin.xml" />
-    <Content Include="plugins\fr._46cl.focus\README.md" />
-    <Content Include="plugins\fr._46cl.focus\src\android\Focus.java" />
-    <Content Include="plugins\fr._46cl.focus\www\focus.js" />
     <Content Include="plugins\samurodrigo-cordova-plugin-devicereport\package.json" />
     <Content Include="plugins\samurodrigo-cordova-plugin-devicereport\plugin.xml" />
     <Content Include="plugins\samurodrigo-cordova-plugin-devicereport\README.md" />
