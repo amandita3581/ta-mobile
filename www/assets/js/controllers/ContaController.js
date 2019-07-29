@@ -175,10 +175,18 @@ function ContaController($rootScope, $scope, produtos, pedido, config, ws, funco
 		return vrTotalItensComTaxa;
 	}
 	
-	vm.getTaxaServicoTotal = function (comandas){
-		var totalComTaxa = TotalComTaxa(comandas);
-		totalComTaxa = totalComTaxa * vm.configuracao.vrTaxaServico;
-		return totalComTaxa;
+    vm.getTaxaServicoTotal = function (comandas) {
+        var totalTaxa = 0;
+        _.each(comandas, function (comanda) {
+            _.each(comanda.liAtendimentoItem, function (item) {
+                if (item.flTaxaServico)
+                    totalTaxa += vm.truncateNumber(item.vrTotal * vm.configuracao.vrTaxaServico);
+            });
+        });
+    
+		//var totalComTaxa = TotalComTaxa(comandas);
+		//totalComTaxa = totalComTaxa * vm.configuracao.vrTaxaServico;
+        return totalTaxa;
 	};
 	
 	vm.getTotalGeral = function (comandas){
@@ -186,5 +194,9 @@ function ContaController($rootScope, $scope, produtos, pedido, config, ws, funco
 			return TotalMesa(comandas) + vm.getTaxaServicoTotal(comandas);
 		else
 			return TotalMesa(comandas);
-	};
+    };
+
+    vm.truncateNumber = function (value){
+       return Math.floor(value * 100) / 100;
+    }
 }

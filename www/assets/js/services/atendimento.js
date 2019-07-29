@@ -20,13 +20,13 @@
             return tipoAtendimentoOriginal;
         },
         getUrlRetornoComanda: function () {
-            if (config.tipoAtendimento != this.getTipoAtendimentoOriginal())
+            if (config.tipoAtendimento !== this.getTipoAtendimentoOriginal())
                 $location.url('/inicioAtendimentoMesa/' + true);
             else {
                 if(config.localConfig.ativarModoTablet)
                     $location.url('/atendimentoMt/limpar/true');
                 else{
-                    if (config.tipoAtendimento != 'comanda')
+                    if (config.tipoAtendimento !== 'comanda')
                         $location.url('/inicioAtendimentoMesa');
                     else
                         $location.url('/atendimento/true');
@@ -219,7 +219,7 @@
                 deferred.reject();
                 return;
             }
-            ws.ObterMesaComanda(mesa, comanda,operador.getOperador().idOperador, false)
+            ws.ObterMesaComanda(mesa, comanda, operador.getOperador().idOperador, false)
             .then(
                 function (data) {
                     var json = angular.fromJson($(data).find('ObterMesaComandaResult').text());

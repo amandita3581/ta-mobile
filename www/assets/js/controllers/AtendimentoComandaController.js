@@ -131,7 +131,7 @@ angular.module('app').controller('AtendimentoComandaController', ['$scope', 'con
         vm.buscaComandaEnter = function ($event) {
 			if(!vm.digitacaoPermitida)
         		$event.preventDefault();
-            if ($event.which == 13) {
+            if ($event.which === 13) {
                 vm.buscaComanda();
             }
         };

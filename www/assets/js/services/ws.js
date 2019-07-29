@@ -411,7 +411,7 @@ function ws(config, md5, $rootScope, $location, toast, $timeout, $window, $filte
     function FinalizarLoading() {
         $rootScope.$broadcast('finalizaLoading');
     }
-	
+
 	function IniciaLoading(){
 		$rootScope.$broadcast('iniciaLoading');
 	}
