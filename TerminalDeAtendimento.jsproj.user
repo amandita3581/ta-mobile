@@ -6,6 +6,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
-    <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
+    <AndroidEmulatorID>AndroidDevice;Dispositivo</AndroidEmulatorID>
   </PropertyGroup>
 </Project>
