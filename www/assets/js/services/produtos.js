@@ -28,54 +28,54 @@ angular.module('app').factory('produtos', ['ws', '$rootScope', 'toast', '$q', 'f
                 }
                 if (prod.idTipoProduto === 3) {
                     if (!prod.fracionados) prod.fracionados = [];
-                }                
-
-                if (prod.idTipoProduto === 2) {
-                    $('#modalInformarValor').modal('show');
-                    $('#modalInformarValor #addValor').click(function () {
-                        var valor = $("#vrProduto").val();
-                        if (valor === null) {
-                            deferred.reject("O valor do produto nao pode ser nulo");
-                        }
-                        else if (!valor.match(/^[0-9]+([\.|\,]([0-9]{1,2})?)?$/)) {
-                            deferred.reject("Valor invalido.");
-                        } else {
-                            valor = valor.replace(/\,/g, '.');
-                            valor = parseFloat(valor);
-                            prod.vrUnitario = valor;
-                            flValorInformado = true;
-                            prod.adicionado = produto.adicionado = true;
-                            if (!prod.observacoes)
-                                prod.observacoes = '';
-                            _produtos.push(prod);
-                            if (prod.flFracionado) {
-                                if (config.microterminal.stBalanca.trim() !== 'SEM BALANCA') {
-                                    if (app.serialPortIsOpen) {
-                                        serial.writeHex("05",
-                                            function (successMessage) {
-                                                console.log(successMessage);
-                                            },
-                                            function (error) {
-                                                console.log(error);
-                                            }
-                                        );
-                                    }
-                                }
-                            }
-                            deferred.resolve(prod);
-                        }
-                        $('#modalInformarValor').modal('hide');
-                        $('#modalInformarValor #addValor').off();
-                        $("#vrProduto").val('');
-                    });
-
-                } else {
-                    prod.adicionado = produto.adicionado = true;
-                    if (!prod.observacoes)
-                        prod.observacoes = '';
-                    _produtos.push(prod);
-                    deferred.resolve(prod);
                 }
+
+                //if (prod.idTipoProduto === 2) {
+                //$('#modalInformarValor').modal('show');
+                //$('#modalInformarValor #addValor').click(function () {
+                //    var valor = $("#vrProduto").val();
+                //    if (valor === null) {
+                //        deferred.reject("O valor do produto nao pode ser nulo");
+                //    }
+                //    else if (!valor.match(/^[0-9]+([\.|\,]([0-9]{1,2})?)?$/)) {
+                //        deferred.reject("Valor invalido.");
+                //    } else {
+                //        valor = valor.replace(/\,/g, '.');
+                //        valor = parseFloat(valor);
+                //        prod.vrUnitario = valor;
+                //        flValorInformado = true;
+                //        prod.adicionado = produto.adicionado = true;
+                //        if (!prod.observacoes)
+                //            prod.observacoes = '';
+                //        _produtos.push(prod);
+                //        if (prod.flFracionado) {
+                //            if (config.microterminal.stBalanca.trim() !== 'SEM BALANCA') {
+                //                if (app.serialPortIsOpen) {
+                //                    serial.writeHex("05",
+                //                        function (successMessage) {
+                //                            console.log(successMessage);
+                //                        },
+                //                        function (error) {
+                //                            console.log(error);
+                //                        }
+                //                    );
+                //                }
+                //            }
+                //        }
+                //        deferred.resolve(prod);
+                //    }
+                //    $('#modalInformarValor').modal('hide');
+                //    $('#modalInformarValor #addValor').off();
+                //    $("#vrProduto").val('');
+                //});
+
+                //} else {
+                prod.adicionado = produto.adicionado = true;
+                if (!prod.observacoes)
+                    prod.observacoes = '';
+                _produtos.push(prod);
+                deferred.resolve(prod);
+                //}
                 return deferred.promise;
             },
             adicionarFracionado: function (produto, itemFracionado, tipo) {
@@ -83,7 +83,7 @@ angular.module('app').factory('produtos', ['ws', '$rootScope', 'toast', '$q', 'f
                 if (!prod.fracionados) prod.fracionados = [];
                 prod.fracionados.push(itemFracionado);
             },
-            obterQuantidadeParaItemFracionado : function (prod) {
+            obterQuantidadeParaItemFracionado: function (prod) {
                 if (prod.flFracionado) {
                     if (config.microterminal.stBalanca.trim() !== 'SEM BALANCA') {
                         if (app.serialPortIsOpen) {
@@ -148,7 +148,7 @@ angular.module('app').factory('produtos', ['ws', '$rootScope', 'toast', '$q', 'f
                 });
                 return prod[0];
             },
-            getProdutoByHash: function(hash, tipo){
+            getProdutoByHash: function (hash, tipo) {
                 var prod = tipo === 'editar' ? _produtos : _produtosBusca;
                 prod = prod.filter(function (item) {
                     if (item.$$hashKey === hash) {
@@ -159,19 +159,19 @@ angular.module('app').factory('produtos', ['ws', '$rootScope', 'toast', '$q', 'f
             },
             getAdicionais: function (produto) {
                 ws.ObterProdutoAdicional(produto.idGrupoAdicional)
-                .done(function (data) {
-                    var adicionais = angular.fromJson($(data).find('ObterProdutoAdicionalResult').text());
-                    if (adicionais.length) {
-                        produto.adicionais = adicionais;
-                        produto.adicionais.map(function (item) {
-                            item.flAdicionado = 2;
-                            return item;
-                        });
-                    }
-                })
-                .fail(function (error) {
-                    console.log(error);
-                });
+                    .done(function (data) {
+                        var adicionais = angular.fromJson($(data).find('ObterProdutoAdicionalResult').text());
+                        if (adicionais.length) {
+                            produto.adicionais = adicionais;
+                            produto.adicionais.map(function (item) {
+                                item.flAdicionado = 2;
+                                return item;
+                            });
+                        }
+                    })
+                    .fail(function (error) {
+                        console.log(error);
+                    });
             },
             setProdutosBusca: function (produtos) {
                 _produtosBusca = produtos;
@@ -218,10 +218,10 @@ angular.module('app').factory('produtos', ['ws', '$rootScope', 'toast', '$q', 'f
                 if (balanca !== null)
                     balanca.enviarPreco(preco);
             },
-            setUltimoProdutoSelecionado: function(produto){
+            setUltimoProdutoSelecionado: function (produto) {
                 _ultimoProdutoSelecionado = produto;
             },
-            getUltimoProdutoSelecionado: function(){
+            getUltimoProdutoSelecionado: function () {
                 return _ultimoProdutoSelecionado;
             }
         };
