@@ -176,12 +176,21 @@ function ContaController($rootScope, $scope, produtos, pedido, config, ws, funco
     vm.getTaxaServicoTotal = function (comandas) {
         var totalTaxa = 0;
         var totalParcial = 0;
+        var totalParcialAdicional = 0;
         _.each(comandas, function (comanda) {
             _.each(comanda.liAtendimentoItem, function (item) {
                 if (item.flTaxaServico)
-                    totalParcial += item.vrTotal * vm.configuracao.vrTaxaServico
+                    totalParcial += item.vrTotal * vm.configuracao.vrTaxaServico;
+                if (item.adicionais.length > 0) {
+                    _.each(item.adicionais, function (itemAdicional) {
+                        totalParcialAdicional += itemAdicional.vrTotal * vm.configuracao.vrTaxaServico;
+                    }
+                    );
+                }
             });
-            totalTaxa = vm.truncateDecimals(totalParcial);
+           
+            
+            totalTaxa = vm.truncateDecimals(totalParcial + totalParcialAdicional);
         });
 
         //var totalComTaxa = TotalComTaxa(comandas);
