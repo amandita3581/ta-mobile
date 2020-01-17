@@ -1,0 +1,25 @@
+ _______  _______  _______   _________ _        _______  _______ 
+(  ____ \(  ___  )(  ____ \  \__   __/( (    /|(  ____ \(  ___  )
+| (    \/| (   ) || (    \/     ) (   |  \  ( || (    \/| (   ) |
+| (_____ | |   | || |           | |   |   \ | || (__    | |   | |
+(_____  )| |   | || | ____      | |   | (\ \) ||  __)   | |   | |
+      ) || | /\| || | \_  )     | |   | | \   || (      | |   | |
+/\____) || (_\ \ || (___) |  ___) (___| )  \  || )      | (___) |
+\_______)(____\/_)(_______)  \_______/|/    )_)|/       (_______)
+                                                                 
+																 
+Instrução sobre os aplicativos:
+
+1. Sobre os diretórios
+	|--LPGAtualizacao
+		|--TA
+			|--android
+				|--ta-arm.apk
+				|--ta-x86.apk
+	
+2. Sobre os arquivos
+	- android/ta-arm.apk
+		Instalar em equipamentos com processador arm.
+		
+	- android/ta-x86.apk
+		Instalar em equipamentos com processador intel.

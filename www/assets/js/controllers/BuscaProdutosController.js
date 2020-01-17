@@ -1,6 +1,6 @@
-angular.module('app').controller('BuscaProdutosController',['$scope', 'ws', '$rootScope', 'toast', 'produtos', '$routeParams', '$location', 'favoritos', 'config', 'pedido', 'funcoes', '$filter', '$timeout', 'operador', BuscaProdutosController]);
+angular.module('app').controller('BuscaProdutosController', ['$scope', 'ws', '$rootScope', 'toast', 'produtos', '$routeParams', '$location', 'favoritos', 'config', 'pedido', 'funcoes', '$filter', '$timeout', 'operador', BuscaProdutosController]);
 
-function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $routeParams, $location, favoritos, config, pedido, funcoes, $filter, $timeout, operador){
+function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $routeParams, $location, favoritos, config, pedido, funcoes, $filter, $timeout, operador) {
     var vm = this;
     vm.termo = '';
     vm.categorias = [];
@@ -20,25 +20,25 @@ function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $ro
     });
 
     vm.doSearch = function (ev) {
-        if($(ev.target)){
+        if ($(ev.target)) {
             vm.termo = $(ev.target).val();
 
-            if($(ev.target).attr('id') == 'buscaProdutoNumerico'){
+            if ($(ev.target).attr('id') == 'buscaProdutoNumerico') {
                 vm.termoString = '';
-            }else{
+            } else {
                 vm.termoNumerico = null;
             }
         }
 
-        if(ev.termo){
+        if (ev.termo) {
             vm.termo = ev.termo;
         }
-		var quantidade = 1;
-		if(ev.produto){
-			vm.termo = ev.produto.codigoProduto;
-			if(ev.produto.quantidade)
-				quantidade = ev.produto.quantidade;
-		}
+        var quantidade = 1;
+        if (ev.produto) {
+            vm.termo = ev.produto.codigoProduto;
+            if (ev.produto.quantidade)
+                quantidade = ev.produto.quantidade;
+        }
 
         if (ev.which == 13) {
             buscar(vm.termo, vm.categoria, vm.subCategoria, quantidade);
@@ -54,7 +54,7 @@ function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $ro
         } else {
             flObter = true;
         }
-        if(flObter){
+        if (flObter) {
             vm.termo = vm.termoNumerico;
             var produto = criarProduto(vm.termo);//funcoes.ValidaCodigoBalanca(codigo);
             buscar(produto);
@@ -92,33 +92,33 @@ function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $ro
     var buscar = function (produto) {
         $rootScope.isLoading = true;
         produtosSvc.buscar(produto.termo, produto.categoria, produto.subcategoria, false)
-        .then(
-            function (data) {
-                var prod = produtosSvc.mapListaProdutos(data, 'ObterProdutoReduzindoResult', produto.quantidade);
-                if (!prod.length) {
-                    toast.showCustomToast('Produto não encontrado.');
+            .then(
+                function (data) {
+                    var prod = produtosSvc.mapListaProdutos(data, 'ObterProdutoReduzindoResult', produto.quantidade);
+                    if (!prod.length) {
+                        toast.showCustomToast('Produto não encontrado.');
+                        vm.produtos = [];
+                        produtosSvc.setProdutosBusca([]);
+                    } else {
+                        vm.produtos = prod;
+                        produtosSvc.setProdutosBusca(prod);
+                        $filter('filterFavoritos')(vm.produtos);
+                        $filter('filterMaxValFracionado')(vm.produtos);
+                    }
+                    $timeout(function () {
+                        $rootScope.$apply();
+                    });
+                },
+                function (erro) {
+                    console.log(erro);
                     vm.produtos = [];
                     produtosSvc.setProdutosBusca([]);
-                } else {
-                    vm.produtos = prod;
-                    produtosSvc.setProdutosBusca(prod);
-                    $filter('filterFavoritos')(vm.produtos);
-                    $filter('filterMaxValFracionado')(vm.produtos);
                 }
-                $timeout(function () {
-                    $rootScope.$apply();
-                });
-            },
-            function (erro) {
-                console.log(erro);
-                vm.produtos = [];
-                produtosSvc.setProdutosBusca([]);
-            }
-        );
+            );
         $('#buscaProduto').blur();
     };
 
-    vm.limpar = function(){
+    vm.limpar = function () {
         vm.produtos = [];
         vm.categoria = null;
         vm.subCategorias = [];
@@ -129,80 +129,80 @@ function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $ro
 
     vm.adicionarProduto = function (produto) {
         produtosSvc.setUltimoProdutoSelecionado(produto);
-		produtosSvc.adicionarProduto(produto).then(function(result){
-		    if (produto.flFracionado) {		        
-		        produtosSvc.obterQuantidadeParaItemFracionado(produtosSvc.getUltimoProdutoSelecionado());
-		    }
-		},
-		function(reason){
-			if(reason !== null)
-				alert(reason);
-		});
+        produtosSvc.adicionarProduto(produto).then(function (result) {
+            if (produto.flFracionado && produto.qt > 0) {
+                produtosSvc.obterQuantidadeParaItemFracionado(produtosSvc.getUltimoProdutoSelecionado());
+            }
+        },
+            function (reason) {
+                if (reason !== null)
+                    alert(reason);
+            });
     };
 
-    vm.selecionaItem = function(item){
-        if(item.selecionado){
+    vm.selecionaItem = function (item) {
+        if (item.selecionado) {
             vm.selecionados.pop();
-        }else{
+        } else {
             vm.selecionados.push(item);
         }
         item.selecionado = !item.selecionado;
     };
 
-    vm.removerProduto= function(produto){
+    vm.removerProduto = function (produto) {
         produtosSvc.removerProduto(produto);
     };
 
-    vm.toggleProduto = function(produto){
-        if(produto.adicionado) {
+    vm.toggleProduto = function (produto) {
+        if (produto.adicionado) {
             vm.removerProduto(produto);
-        }else{
+        } else {
             vm.adicionarProduto(produto);
         }
     };
 
-    vm.ObterCategorias = function(){
+    vm.ObterCategorias = function () {
         ws.ObterCategoria()
-        .done(function(data){
-            vm.categorias = angular.fromJson($(data).find('ObterCategoriaResult').text());
-            vm.subCategoria = 0;
-        }).fail(function(error){
-            console.log(error);
-        });
+            .done(function (data) {
+                vm.categorias = angular.fromJson($(data).find('ObterCategoriaResult').text());
+                vm.subCategoria = 0;
+            }).fail(function (error) {
+                console.log(error);
+            });
     };
 
-    vm.ObterSubCategorias = function(){
-		if(!vm.categoria){
-			vm.limpar();
-			return false;
-		}
-			
+    vm.ObterSubCategorias = function () {
+        if (!vm.categoria) {
+            vm.limpar();
+            return false;
+        }
+
         ws.ObterSubCategoria(vm.categoria)
-        .done(function(data){
-            vm.subCategorias = angular.fromJson($(data).find('ObterSubCategoriaResult').text());
-            vm.subCategoria = 0;
-            var termo = vm.termoNumerico || vm.termoString;
-            var produto = criarProduto(termo);
-            buscar(produto);
-            $scope.$digest();
-        }).fail(function(error){
-            console.log(error);
-        });
+            .done(function (data) {
+                vm.subCategorias = angular.fromJson($(data).find('ObterSubCategoriaResult').text());
+                vm.subCategoria = 0;
+                var termo = vm.termoNumerico || vm.termoString;
+                var produto = criarProduto(termo);
+                buscar(produto);
+                $scope.$digest();
+            }).fail(function (error) {
+                console.log(error);
+            });
     };
 
     vm.selecionarSubcategoria = function () {
         var produto = criarProduto();
         buscar(produto);
     };
-    vm.abrirOpcoes = function(produto){
+    vm.abrirOpcoes = function (produto) {
         $location.url('/opcoes/Hash/' + produto.$$hashKey + '/Origem/novo');
     };
 
-    vm.openBarCodeScanner = function(ev){
-        funcoes.ScanBarCode(function(code){
-			if(!code) 
-				return false;
-			
+    vm.openBarCodeScanner = function (ev) {
+        funcoes.ScanBarCode(function (code) {
+            if (!code)
+                return false;
+
             var produto = criarProduto(code);
             buscar(produto);
         });
@@ -233,7 +233,7 @@ function BuscaProdutosController($scope, ws, $rootScope, toast, produtosSvc, $ro
         item.qt = qt;
     };
 
-    vm.formataValorTotalItem = function(item){
+    vm.formataValorTotalItem = function (item) {
         return funcoes.FormataValorTotalItem(item);
     };
 
