@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget android-versionCode="0" defaultlocale="pt-BR" id="com.sqginfo.terminalAtendimento" version="1.0.205.97" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+<widget android-versionCode="0" defaultlocale="pt-BR" id="com.sqginfo.terminalAtendimento" version="1.0.205.98" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
   <name>Terminal de Atendimento</name>
   <description>Projeto front-end para terminal de atendimento no celular.</description>
   <author email="samuel.ferreira@sqginfo.com.br" href="http://sqginfo.com.br/">SQG INFO</author>
